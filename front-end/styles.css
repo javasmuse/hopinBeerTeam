@@ -5,11 +5,12 @@
 }
 
 .age_Verification {
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: white;
+    color: black;
     border: #99d15e solid 5px;
     height: auto;
     width: 400px;
@@ -95,4 +96,16 @@
   .topnav a.active {
     background-color: #4CAF50;
     color: white;
+  }
+
+  .aboutBanner{
+      background-color: #222;
+      text-align: center;
+      margin: 2rem;
+      font-family: 'Khand';
+      padding: 10rem;
+      height: 50vh;
+  }
+  .footerAll {
+      background-color: #222;
   }
