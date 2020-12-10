@@ -1,0 +1,36 @@
+.age_Verification {
+    background-color: white;
+    border: #99d15e solid 5px;
+    height: auto;
+    width: 400px;
+    text-align: center;
+    padding: 2% 2%;
+}
+
+.ageVerBody {
+    font-family: 'Khand';
+}
+
+.ageVerTitle {
+    color: #015825;
+}
+
+.yes {
+    background-color: #015825;
+    color: white;
+}
+
+.yes:hover {
+    background: #015825;
+    color: white;
+}
+
+.no {
+    background-color: #015825;
+    color: white;
+}
+
+.no:hover {
+    background: #015825;
+    color: white;
+}
