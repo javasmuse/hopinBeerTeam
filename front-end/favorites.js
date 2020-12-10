@@ -1,5 +1,5 @@
 function BeerConstructor(id, name, imgUrl, category, abv,
-    type, brewer, country) {
+    type, brewer, country, comments) {
     this.id = id;
     this.name = name;
     this.imgUrl = imgUrl;
@@ -8,4 +8,5 @@ function BeerConstructor(id, name, imgUrl, category, abv,
     this.type = type;
     this.brewer = brewer;
     this.country = country;
+    this.comments = comments;
 }
