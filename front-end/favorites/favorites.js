@@ -1,4 +1,5 @@
 // DONT WORRY ABOUT CSS FOR NOW!!!
+const HEROKU_BACK_END_BASE_URL = "https://hopin-back-end.herokuapp.com"
 const addFavBeerForm = document.getElementById("add-favorite-beer-form");
 const favoriteBeerContainer = document.getElementById("favorites-container");
 addFavBeerForm.addEventListener('submit', addFavoriteBeer);
@@ -21,8 +22,8 @@ function addFavoriteBeer(event) {
 
     let newBeer = new Beer(id, name, imgUrl, category,
         abv, type, brewer, country, comments);
-    console.log(newBeer);
-    // pushBeerObjToBackEnd(newBeer);
+    // add the new beer object to heroku backend
+    pushBeerObjToBackEnd(newBeer);
     // add beer to view
     prependBeerCardToContainer(favoriteBeerContainer, newBeer);
 }
@@ -83,7 +84,17 @@ function prependBeerCardToContainer(container, beerObj) {
 }
 
 function pushBeerObjToBackEnd(beerObj) {
-    //TODO push to heroku
+    axios.post(`${HEROKU_BACK_END_BASE_URL}/user/favorites`, {
+            beerObj
+        })
+        .then(function (response) {
+            alert(response);
+            console.log(response);
+        })
+        .catch(function (error) {
+            alert(error);
+            console.log(error);
+        });
 }
 
 function randomNumberInRange(min, max) {
