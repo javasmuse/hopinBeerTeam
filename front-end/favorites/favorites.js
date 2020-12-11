@@ -5,10 +5,17 @@ const favoriteBeerContainer = document.getElementById("favorites-container");
 favoriteBeerContainer.addEventListener("load", loadFavoritesContainer);
 addFavBeerForm.addEventListener('submit', addFavoriteBeer);
 
-function loadFavoritesContaier() {
-
+function loadFavoritesContainer() {
+    axios.get(`${HEROKU_BACK_END_BASE_URL}/user/favorites`)
+        .then(function (response) {
+            res.send(response);
+            console.log(response);
+        })
+        .catch(function (error) {
+            alert(error);
+            console.log(error);
+        });
 }
-
 
 function addFavoriteBeer(event) {
     event.preventDefault();
