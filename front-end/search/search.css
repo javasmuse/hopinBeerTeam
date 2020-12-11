@@ -1,0 +1,145 @@
+body {
+    margin: 0px;
+   background-color: rgb(37, 37, 37);
+   color: white;
+   font-family: 'Khand';
+}
+.navLogo {
+    width: 4rem;
+    height: auto;
+    margin: 0.5rem;
+}
+
+/* copy pastad */
+.topnav {
+    background-color: #222;
+    position: sticky;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    font-family: 'Khand';
+  }
+  
+  .topnav a {
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  
+  .topnav a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  
+  .topnav a.active {
+    background-color: #4CAF50;
+    color: white;
+  }
+
+  .aboutBanner{
+      background-color: #222;
+      text-align: center;
+      margin: 2rem;
+      font-family: 'Khand';
+      padding: 10rem;
+      height: 50vh;
+  }
+
+#main_container {
+    margin: 2rem; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+h1 {
+    margin: 1rem;
+}
+
+#allBeers {
+display: flex;
+flex-direction: column;
+align-content: space-between;
+}
+
+#getAll {
+    margin-left: 1rem;
+    border-radius: 5%;
+    background-color: green;
+    border: none;
+    max-width: 8rem;
+    max-height: 2rem;
+}
+
+#getAll:hover {
+    background-color: aqua;
+}
+
+#search-beers {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+}
+
+
+#beer_name {
+    margin-bottom: 1rem;
+}
+
+#beer_type {
+    margin-bottom: 1rem;
+}
+
+#country {
+    margin-bottom: 1rem;
+}
+
+#cellar_search {
+    margin-bottom: 1rem;
+}
+
+#cellar_search {
+    margin-left: 1rem;
+    border-radius: 5%;
+    background-color: green;
+    border: none;
+    max-width: 8rem;
+    max-height: 2rem;
+}
+
+#cellar_search:hover {
+    background-color: aqua;
+}
+
+#cellar_reset {
+    margin-left: 1rem;
+    border-radius: 5%;
+    background-color: red;
+    border: none;
+    max-width: 8rem;
+    max-height: 2rem;
+}
+
+#cellar_reset:hover {
+    background-color: aqua;
+}
+
+#beer_card {
+    max-width: 400px;
+    max-height: 300px;
+}
+
+
+
+
+.footerAll {
+      background-color: #222;
+      left: 0;
+      bottom: 0;
+      position: fixed;
+      text-align: center;
+      width: 100%;
+  }
