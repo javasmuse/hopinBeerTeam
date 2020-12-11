@@ -95,6 +95,14 @@ function createBeerCard(beerObj) {
     beerCountryElement.innerHTML = beerObj.country;
     newBeerCard.appendChild(beerCountryElement);
 
+    // Create a button to delete
+    let beerDeleteBtn = document.createElement("button");
+    beerDeleteBtn.innerHTML = "Delete";
+    beerDeleteBtn.addEventListener("click", () => {
+        deleteBeerObjFromBackEnd(beerObj.id);
+    });
+    newBeerCard.appendChild(beerDeleteBtn);
+
     // Create, set value and append to parent the beer comments
     //TODO implement view for comments
     let beerCommentsElement = document.createElement("div");
@@ -122,6 +130,19 @@ function pushBeerObjToBackEnd(beerObj) {
             console.log(error);
         });
 }
+
+function deleteBeerObjFromBackEnd(beerId) {
+    axios.delete(`${HEROKU_BACK_END_BASE_URL}/user/favorites/${beerId}`)
+        .then(function (response) {
+            alert(response.data);
+        })
+        .catch(function (error) {
+            alert(error);
+            console.log(error);
+        });
+
+}
+
 
 function randomNumberInRange(min, max) {
     return Math.floor(Math.random() * (max - min) + min);
