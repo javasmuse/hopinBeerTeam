@@ -31,7 +31,7 @@ function addFavoriteBeer(event) {
 function createBeerCard(beerObj) {
     // Create a container element to hold a new beer card
     let newBeerCard = document.createElement("div");
-
+    newBeerCard.className = "beer-card";
     // Create, set value and append to parent the beer name
     let beerNameElement = document.createElement("h3");
     beerNameElement.textContent = beerObj.name;
@@ -77,16 +77,13 @@ function createBeerCard(beerObj) {
     return newBeerCard;
 }
 
-
 function prependBeerCardToContainer(container, beerObj) {
     let beerCard = createBeerCard(beerObj);
     container.prepend(beerCard);
 }
 
 function pushBeerObjToBackEnd(beerObj) {
-    axios.post(`${HEROKU_BACK_END_BASE_URL}/user/favorites`, {
-            beerObj
-        })
+    axios.post(`${HEROKU_BACK_END_BASE_URL}/user/favorites`, beerObj)
         .then(function (response) {
             alert(response);
             console.log(response);
