@@ -1,10 +1,20 @@
+
+
+
 .main_body {
     background-color: rgb(37, 37, 37);
     color: white;
-    border: #222 solid 2px;
+    background-image: url(https://images3.alphacoders.com/276/276637.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+
 }
 
 .age_Verification {
+    /* z-index: ; */
+    z-index: 2;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -20,7 +30,17 @@
 }
 
 /* changes */
-
+.ageVerBg {
+    z-index: 1;
+    position: fixed;
+    /* hug the bulkhead */
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    background-color: black;
+    opacity: 0.9;
+}
 
 .ageVerBody {
     font-family: 'Khand';
@@ -78,34 +98,83 @@
     align-items: center;
     overflow: hidden;
     font-family: 'Khand';
-  }
-  
-  .topnav a {
+    min-height: 10vh;
+}
+
+.topnav a {
     color: #f2f2f2;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
-  }
-  
-  .topnav a:hover {
+}
+
+.topnav a:hover {
     background-color: #ddd;
     color: black;
-  }
-  
-  .topnav a.active {
+}
+
+.topnav a.active {
     background-color: #4CAF50;
     color: white;
-  }
+}
 
-  .aboutBanner{
-      background-color: #222;
-      text-align: center;
-      margin: 2rem;
-      font-family: 'Khand';
-      padding: 10rem;
-      height: 50vh;
-  }
-  .footerAll {
-      background-color: #222;
-  }
+.aboutBanner {
+    background-color: #222;
+    opacity: 0.9;
+    text-align: center;
+    margin: 2rem;
+    font-family: 'Khand';
+    padding: 10rem;
+    height: 50vh;
+}
+
+.footerAll {
+    background-color: #222;
+}
+
+.contentMsg {
+    min-height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content_container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    height: 80vh;
+
+}
+
+.content_panel {
+    min-height: 80%;
+    min-width: 40%;
+    background-color: #4CAF50;
+    margin: 10px;
+    opacity: 0.9;
+}
+
+.pageBtn {
+    background-color: #015825;
+    color: white;
+    padding: 0.5rem;
+    margin: 0 10px;
+    border-radius: 5%;
+    border: none;
+    margin: 10px;
+}
+
+.pageBtn:hover {
+    transition: 1s;
+    background: white;
+    color: #015825;
+}
+
+
+@media screen and (max-width: 640px) {
+    .content_panel {
+        min-width: 80%;
+    }
+}

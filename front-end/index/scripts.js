@@ -1,43 +1,23 @@
-document.getElementById("cellar_search").addEventListener("click", getBeers);
-
-let bType = document.getElementById("beer_type").value;
-let bCountry = document.getElementById("country").value;
-let bName = document.getElementById("beer_name").value;
-
-function getBeers(event) {
-    event.preventDefault(event);
-
-<<<<<<< HEAD
-    axios.get("http://ontariobeerapi.ca/beers").then((res) => {
-        let beer = res.data;
-        // console.log(beer);
-
-        let lagers = beer.filter(bee => bee.type === "Lager");
-        console.log(lagers);
-    });
+const ofAge = localStorage.getItem("ofAge")
+if(ofAge !== undefined && ofAge === "yes") {
+    document.getElementById("ageVerBg").style.display = "none";
+} else {
+    //flash verification
 }
-=======
 
-    axios.get("http://ontariobeerapi.ca/beers").then((res) => {
-            let beer = res.data;
-            // console.log(beer);
-
-
-
-
-            let lagers = beer.filter(bee => bee.type === "Lager");
-            console.log(lagers);
-        }
-
-
-
-
-
-    });
 
 function overAge() {
     const container = document.getElementById("ageVer");
     container.remove();
+    const ageVerBg = document.getElementById("ageVerBg");
+    ageVerBg.remove();
+
+// store that user is above age
+// have to be global enough, check if exists
+// check if yes
+    localStorage.setItem("ofAge", "yes");
+
+
 };
 
 function underAge() {
@@ -62,7 +42,7 @@ function underAge() {
     const exitButton = document.createElement("button");
     exitButton.classList.add("yes");
     exitButton.innerHTML = "Exit";
-    exitButton.addEventListener("click", function(event) {
+    exitButton.addEventListener("click", function (event) {
         window.open("https://parents.caprisun.com/");
         window.close();
     });
@@ -70,4 +50,3 @@ function underAge() {
     // Append container to body;
     page.appendChild(container);
 };
->>>>>>> 45693231687fa6fbf9f1c1c7910590c746d33d79
