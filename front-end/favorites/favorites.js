@@ -2,7 +2,13 @@
 const HEROKU_BACK_END_BASE_URL = "https://hopin-back-end.herokuapp.com"
 const addFavBeerForm = document.getElementById("add-favorite-beer-form");
 const favoriteBeerContainer = document.getElementById("favorites-container");
+favoriteBeerContainer.addEventListener("load", loadFavoritesContainer);
 addFavBeerForm.addEventListener('submit', addFavoriteBeer);
+
+function loadFavoritesContaier() {
+
+}
+
 
 function addFavoriteBeer(event) {
     event.preventDefault();
@@ -26,6 +32,12 @@ function addFavoriteBeer(event) {
     pushBeerObjToBackEnd(newBeer);
     // add beer to view
     prependBeerCardToContainer(favoriteBeerContainer, newBeer);
+}
+
+function updateBeerObj() {
+    //put request
+    // get new data
+    // refresh container
 }
 
 function createBeerCard(beerObj) {
@@ -85,7 +97,9 @@ function prependBeerCardToContainer(container, beerObj) {
 function pushBeerObjToBackEnd(beerObj) {
     axios.post(`${HEROKU_BACK_END_BASE_URL}/user/favorites`, beerObj)
         .then(function (response) {
-            alert(response);
+            if (response.data === "success") {
+                alert("We added your new favorite beer!");
+            }
             console.log(response);
         })
         .catch(function (error) {
