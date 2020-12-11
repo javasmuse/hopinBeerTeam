@@ -7,6 +7,16 @@ let bName = document.getElementById("beer_name").value;
 function getBeers(event) {
     event.preventDefault(event);
 
+<<<<<<< HEAD
+    axios.get("http://ontariobeerapi.ca/beers").then((res) => {
+        let beer = res.data;
+        // console.log(beer);
+
+        let lagers = beer.filter(bee => bee.type === "Lager");
+        console.log(lagers);
+    });
+}
+=======
 
     axios.get("http://ontariobeerapi.ca/beers").then((res) => {
             let beer = res.data;
@@ -60,3 +70,4 @@ function underAge() {
     // Append container to body;
     page.appendChild(container);
 };
+>>>>>>> 45693231687fa6fbf9f1c1c7910590c746d33d79
