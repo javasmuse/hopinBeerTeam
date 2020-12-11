@@ -54,4 +54,10 @@ function getBeers(event) {
       console.log(beerList);
     }
   });
+
+  document.getElementById("cellar_reset").addEventListener("click", reset);
+
+  function reset() {
+    document.getElementById("search-beers").reset();
+  }
 }
