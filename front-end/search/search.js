@@ -9,6 +9,21 @@ function getAllBeers(event) {
   });
 }
 
+function randomTenBeers() {
+  axios.get("http://ontariobeerapi.ca/beers").then((res) => {
+    let beers = res.data;
+    let beerArray = [];
+
+    for (let i = 0; i < 10; i++) {
+      let num = Math.floor(Math.random() * beers.length);
+      beerArray.push(beers[num]);
+    }
+    console.log(beerArray);
+  });
+}
+
+randomTenBeers();
+
 document.getElementById("cellar_search").addEventListener("click", getBeers);
 
 function getBeers(event) {
