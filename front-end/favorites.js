@@ -1,3 +1,5 @@
+// DONT WORRY ABOUT CSS FOR NOW!!!
+
 function BeerConstructor(id, name, imgUrl, category, abv,
     type, brewer, country, comments) {
     this.id = id;
