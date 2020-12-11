@@ -1,6 +1,23 @@
+const ofAge = localStorage.getItem("ofAge")
+if(ofAge !== undefined && ofAge === "yes") {
+    document.getElementById("ageVerBg").style.display = "none";
+} else {
+    //flash verification
+}
+
+
 function overAge() {
     const container = document.getElementById("ageVer");
     container.remove();
+    const ageVerBg = document.getElementById("ageVerBg");
+    ageVerBg.remove();
+
+// store that user is above age
+// have to be global enough, check if exists
+// check if yes
+    localStorage.setItem("ofAge", "yes");
+
+
 };
 
 function underAge() {
