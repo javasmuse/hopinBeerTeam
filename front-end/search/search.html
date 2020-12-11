@@ -1,51 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Search Our Beers</title>
-</head>
+  </head>
 
-<body>
-    <div id="nav_bar">
-
-    </div>
+  <body>
+    <div id="nav_bar"></div>
 
     <div id="main_container">
-        <div id="search-container">
-            <form action="" method="get">
-                <label for="beer_name">Beer Name: </label>
-                <input type="text" name="beer_name" id="beer_name" placeholder="Beer Name Here">
-                <label for="beer_type">Select a Style of Beer:</label>
-                <select name="beer_type" id="beer_type">
-                    <option value="Porter">Porter</option>
-                    <option value="Stout">Stout</option>
-                    <option value="Lager">Lager</option>
-                    <option value="IPA">IPA</option>
-                    <option value="Pale Ale">Pale Ale</option>
-                </select>
-                <select name="country" id="country">
-                    <option value="America">America</option>
-                    <option value="Canada">Canada</option>
-                    <option value="Mexico">Mexico</option>
-                    <option value="Japan">Japan</option>
-                    <option value="Germany">Germany</option>
-                </select>
-                <button type="submit" id="cellar_search">Search the Cellar</button>
-            </form>
-        </div>
-        <div id="display_results">
+      <div id="allBeers">
+        <button type="submit" id="getAll">Get All Beers</button>
+      </div>
 
-        </div>
+      <div id="search-container">
+        <form action="" method="get">
+          <label for="beer_name">Beer Name: </label>
+          <input
+            type="text"
+            name="beer_name"
+            id="beer_name"
+            placeholder="Beer Name Here"
+          />
+          <label for="beer_type">Select a Style of Beer:</label>
+          <select name="beer_type" id="beer_type">
+            <option value="Porter">Porter</option>
+            <option value="Stout">Stout</option>
+            <option value="Lager">Lager</option>
+            <option value="IPA">IPA</option>
+            <option value="Pale Ale">Pale Ale</option>
+          </select>
+          <select name="country" id="country">
+            <option value="America">America</option>
+            <option value="Canada">Canada</option>
+            <option value="Mexico">Mexico</option>
+            <option value="Japan">Japan</option>
+            <option value="Germany">Germany</option>
+          </select>
+          <button type="submit" id="cellar_search">Search the Cellar</button>
+        </form>
+      </div>
+      <div id="display_results"></div>
     </div>
-    <div id="foot_space">
-    </div>
-
+    <div id="foot_space"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="/hopIn/front-end/scripts.js"></script>
-</body>
-
+    <script src="/front-end/search/search.js"></script>
+  </body>
 </html>
