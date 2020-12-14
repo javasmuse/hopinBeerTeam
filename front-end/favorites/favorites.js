@@ -1,5 +1,5 @@
 // Constants
-const HEROKU_BACK_END_BASE_URL = "https://hopin-back-end.herokuapp.com"
+const HEROKU_BACK_END_BASE_URL = "https://hopin-back-end.herokuapp.com";
 const addFavBeerForm = document.getElementById("add-favorite-beer-form");
 const favoriteBeerContainer = document.getElementById("favorites-container");
 // Give our form submit functionality
@@ -56,6 +56,28 @@ function addFavoriteBeer(event) {
     pushBeerObjToBackEnd(newBeer);
 }
 
+// Makes an axios call to add the beer object to
+// heroku back end.  Reloads favorites container with 
+// new updated data if a success response is received.
+// beerObj -> the beer object to add
+function pushBeerObjToBackEnd(beerObj) {
+    axios.post(`${HEROKU_BACK_END_BASE_URL}/user/favorites`, beerObj)
+        .then(function (response) {
+            if (response.data === "success") {
+                loadContainer(favoriteBeerContainer);
+                alert("We added your new favorite beer!");
+            }
+        })
+        .catch(function (error) {
+            alert(error);
+            console.log(error);
+        });
+}
+
+// Displays edit inputs next to beer cards child elements
+// Allows user to update any or all fields for the favorite beer
+// beerEditBtn -> the edit/save button object
+// listArray -> the children of the beer card ie. name, abv etc.
 function editButtonCondition(beerEditBtn, listArray) {
     // Flip button's purpose and text to save
     beerEditBtn.innerHTML = "Save";
@@ -78,6 +100,43 @@ function editButtonCondition(beerEditBtn, listArray) {
     }
 }
 
+// Saves the current input values from editing to heroku back end
+// Updates all values that are not undefined or empty strings
+// Reloads the container when complete
+// beerEditBtn -> the edit/save button object
+// newBeerCard -> the beer card specific to this save call
+// listArray -> the children of the beer card ie. name, abv etc.
+function saveButtonCondition(beerEditBtn, newBeerCard, listArray) {
+    // User clicked save button
+    beerEditBtn.innerHTML = "Edit";
+    // Update back end data 
+    let allEditInputs = newBeerCard.getElementsByTagName("input");
+    // Initialize new beer data
+    let updatedBeerData = {
+        name: allEditInputs[1].value,
+        imgUrl: allEditInputs[2].value,
+        category: allEditInputs[3].value,
+        abv: allEditInputs[4].value,
+        type: allEditInputs[5].value,
+        brewer: allEditInputs[6].value,
+        country: allEditInputs[7].value
+    };
+    // Retrieve beer id to update
+    let beerId = listArray[0].innerHTML;
+    // Update/put call to heroku back end
+    axios.put(`${HEROKU_BACK_END_BASE_URL}/user/favorites/${beerId}`,
+            updatedBeerData)
+        .then(function (response) {
+            // Reload container when complete and alert response to user
+            loadContainer(favoriteBeerContainer);
+            alert(response.data);
+        })
+        .catch(function (error) {
+            alert(error);
+            console.log(error);
+        });
+}
+
 // Updates the beer data in heroku backend
 // Invokved when the edit button is clicked
 // Displays input fields next to beer information
@@ -89,40 +148,70 @@ function updateBeerFavoritesData(beerEditBtn, newBeerCard) {
     // Create array of children elements to iterate over
     const listItems = newBeerCard.children;
     const listArray = Array.from(listItems);
-    // User clicks Edit initally
+    // Same edit button is used for both conditions below
+    // Behaves like a toggle switch
+    // User clicks Edit
     if (beerEditBtn.innerHTML === "Edit") {
         editButtonCondition(beerEditBtn, listArray);
-
-    } else {
-        // User clicked save button
-        beerEditBtn.innerHTML = "Edit";
-        // Update back end data 
-        let allEditInputs = newBeerCard.getElementsByTagName("input");
-        let updatedBeerData = {
-            name: allEditInputs[1].value,
-            imgUrl: allEditInputs[2].value,
-            category: allEditInputs[3].value,
-            abv: allEditInputs[4].value,
-            type: allEditInputs[5].value,
-            brewer: allEditInputs[6].value,
-            country: allEditInputs[7].value
-        };
-        let beerId = listArray[0].innerHTML;
-        console.log(beerId);
-        axios.put(`${HEROKU_BACK_END_BASE_URL}/user/favorites/${beerId}`,
-                updatedBeerData)
-            .then(function (response) {
-                loadContainer(favoriteBeerContainer);
-                alert(response.data);
-            })
-            .catch(function (error) {
-                alert(error);
-                console.log(error);
-            });
-
+        return;
+    }
+    // User clicks Save
+    if (beerEditBtn.innerHTML === "Save") {
+        saveButtonCondition(beerEditBtn, newBeerCard, listArray);
+        return;
     }
 }
 
+// Deletes the beer object from heroku back end.
+// Uses the beer id to find the correct beer to delete
+// beerId -> the id of the beer object to delete
+function deleteBeerObjFromBackEnd(beerId) {
+    axios.delete(`${HEROKU_BACK_END_BASE_URL}/user/favorites/${beerId}`)
+        .then(function (response) {
+            // TODO CHECK FOR SUCCESS MSG - IMPLEMENT/VERIFY IN BACKEND
+            loadContainer(favoriteBeerContainer);
+            alert(response.data);
+        })
+        .catch(function (error) {
+            alert(error);
+            console.log(error);
+        });
+
+}
+
+// Helper function to generate numbers within
+// a certain range.  Used to generate ids for beer objects.
+// min - the lower bound value
+// max - the upper bound value
+function randomNumberInRange(min, max) {
+    return Math.floor(Math.random() * (max - min) + min);
+}
+
+
+// Beer object template
+// id is beer_id from api call
+// name is name form api call
+// imgUrl is image url from api call
+// ... and so on
+// exception is comments. initialize as
+// empty array if no data is available
+function Beer(id, name, imgUrl, category, abv,
+    type, brewer, country, comments) {
+    this.id = id;
+    this.name = name;
+    this.imgUrl = imgUrl;
+    this.category = category;
+    this.abv = abv;
+    this.type = type;
+    this.brewer = brewer;
+    this.country = country;
+    this.comments = comments;
+}
+
+// Creates the entire beer card
+// Creates child elements/nodes based
+// on the beer object and its fields 
+// beerObj -> the beer object data to populate
 function createBeerCard(beerObj) {
     // Create a container element to hold a new beer card
     let newBeerCard = document.createElement("div");
@@ -192,63 +281,4 @@ function createBeerCard(beerObj) {
 
     // Send back the created beer card with its children
     return newBeerCard;
-}
-
-function prependBeerCardToContainer(container, beerObj) {
-    let beerCard = createBeerCard(beerObj);
-    container.prepend(beerCard);
-}
-
-function pushBeerObjToBackEnd(beerObj) {
-    axios.post(`${HEROKU_BACK_END_BASE_URL}/user/favorites`, beerObj)
-        .then(function (response) {
-            if (response.data === "success") {
-                loadContainer(favoriteBeerContainer);
-                alert("We added your new favorite beer!");
-            }
-        })
-        .catch(function (error) {
-            alert(error);
-            console.log(error);
-        });
-}
-
-function deleteBeerObjFromBackEnd(beerId) {
-    axios.delete(`${HEROKU_BACK_END_BASE_URL}/user/favorites/${beerId}`)
-        .then(function (response) {
-            // TODO CHECK FOR SUCCESS MSG - IMPLEMENT/VERIFY IN BACKEND
-            loadContainer(favoriteBeerContainer);
-            alert(response.data);
-        })
-        .catch(function (error) {
-            alert(error);
-            console.log(error);
-        });
-
-}
-
-
-function randomNumberInRange(min, max) {
-    return Math.floor(Math.random() * (max - min) + min);
-}
-
-
-// Beer object template
-// id is beer_id from api call
-// name is name form api call
-// imgUrl is image url from api call
-// ... and so on
-// exception is comments. initialize as
-// empty array if no data is available
-function Beer(id, name, imgUrl, category, abv,
-    type, brewer, country, comments) {
-    this.id = id;
-    this.name = name;
-    this.imgUrl = imgUrl;
-    this.category = category;
-    this.abv = abv;
-    this.type = type;
-    this.brewer = brewer;
-    this.country = country;
-    this.comments = comments;
 }
