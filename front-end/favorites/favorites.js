@@ -50,10 +50,60 @@ function addFavoriteBeer(event) {
     // loadContainer(favoriteBeerContainer);
 }
 
-function updateBeerObj() {
-    //put request
-    // get new data
-    // refresh container
+function updateBeerFavoritesData(newBeerCard) {
+    // TODO Update beer fields here - put call'
+    // Display inputs for all fields
+    // Flip the button text
+    const listItems = newBeerCard.children;
+    console.log(listItems);
+    const listArray = Array.from(listItems);
+    console.log(listArray);
+    if (beerEditBtn.innerHTML === "Edit") {
+        // User clicked edit button
+        beerEditBtn.innerHTML = "Save";
+        // Show input fields
+        for (let index = 0; index < listArray.length; index++) {
+            let currElement = listArray[index];
+            // Add inputs for children ending at the first button
+            if (currElement.localName === "button") {
+                break;
+            }
+            let editInput = document.createElement("input");
+            if (currElement.nextSibling) {
+                currElement.parentNode.insertBefore(editInput, currElement.nextSibling);
+            } else {
+                currElement.parentNode.appendChild(editInput);
+            }
+        }
+
+    } else {
+        // User clicked save button
+        beerEditBtn.innerHTML = "Edit";
+        // Update back end data 
+        let allEditInputs = newBeerCard.getElementsByTagName("input");
+        let updatedBeerData = {
+            name: allEditInputs[1].value,
+            imgUrl: allEditInputs[2].value,
+            category: allEditInputs[3].value,
+            abv: allEditInputs[4].value,
+            type: allEditInputs[5].value,
+            brewer: allEditInputs[6].value,
+            country: allEditInputs[7].value
+        };
+        let beerId = listArray[0].innerHTML;
+        console.log(beerId);
+        axios.put(`${HEROKU_BACK_END_BASE_URL}/user/favorites/${beerId}`,
+                updatedBeerData)
+            .then(function (response) {
+                loadContainer(favoriteBeerContainer);
+                alert(response.data);
+            })
+            .catch(function (error) {
+                alert(error);
+                console.log(error);
+            });
+
+    }
 }
 
 function createBeerCard(beerObj) {
@@ -105,61 +155,7 @@ function createBeerCard(beerObj) {
     let beerEditBtn = document.createElement("button");
     beerEditBtn.innerHTML = "Edit";
     beerEditBtn.addEventListener("click", () => {
-        // TODO Update beer fields here - put call'
-        // Display inputs for all fields
-        // Flip the button text
-        const listItems = newBeerCard.children;
-        console.log(listItems);
-        const listArray = Array.from(listItems);
-        console.log(listArray);
-        if (beerEditBtn.innerHTML === "Edit") {
-            // User clicked edit button
-            beerEditBtn.innerHTML = "Save";
-            // Show input fields
-            for (let index = 0; index < listArray.length; index++) {
-                let currElement = listArray[index];
-                // Add inputs for children ending at the first button
-                if (currElement.localName === "button") {
-                    break;
-                }
-                let editInput = document.createElement("input");
-                if (currElement.nextSibling) {
-                    currElement.parentNode.insertBefore(editInput, currElement.nextSibling);
-                } else {
-                    currElement.parentNode.appendChild(editInput);
-                }
-            }
-
-        } else {
-            // User clicked save button
-            beerEditBtn.innerHTML = "Edit";
-            // Update back end data 
-            let allEditInputs = newBeerCard.getElementsByTagName("input");
-            let updatedBeerData = {
-                name: allEditInputs[1].value,
-                imgUrl: allEditInputs[2].value,
-                category: allEditInputs[3].value,
-                abv: allEditInputs[4].value,
-                type: allEditInputs[5].value,
-                brewer: allEditInputs[6].value,
-                country: allEditInputs[7].value
-            };
-            let beerId = listArray[0].innerHTML;
-            console.log(beerId);
-            axios.put(`${HEROKU_BACK_END_BASE_URL}/user/favorites/${beerId}`,
-                    updatedBeerData)
-                .then(function (response) {
-                    loadContainer(favoriteBeerContainer);
-                    alert(response.data);
-                })
-                .catch(function (error) {
-                    alert(error);
-                    console.log(error);
-                });
-
-        }
-
-        // deleteBeerObjFromBackEnd(beerObj.id);
+        updateBeerFavoritesData(newBeerCard);
     });
     newBeerCard.appendChild(beerEditBtn);
 
