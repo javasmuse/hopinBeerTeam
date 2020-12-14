@@ -1,3 +1,7 @@
+import {
+    userInfo
+} from "os";
+
 // Constants
 const HEROKU_BACK_END_BASE_URL = "https://hopin-back-end.herokuapp.com"
 const addFavBeerForm = document.getElementById("add-favorite-beer-form");
@@ -25,10 +29,12 @@ function loadContainer(container) {
         });
 }
 
+// Adds a new favorite beer based on the user's
+// input in the add beer form. Invoked when the 
+// form is submitted.
+// event -> the event that called this function
 function addFavoriteBeer(event) {
     event.preventDefault();
-    console.log(event);
-    console.log(event.target);
     let beerFormData = event.target;
 
     let id = randomNumberInRange(100, 10000);
