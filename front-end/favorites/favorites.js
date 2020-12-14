@@ -41,27 +41,22 @@ function addFavoriteBeer(event) {
     let country = beerFormData[6].value;
     let comments = [];
 
+    // Create the new beer object
     let newBeer = new Beer(id, name, imgUrl, category,
         abv, type, brewer, country, comments);
-    // add the new beer object to heroku backend
+    // Add the new beer object to heroku backend
     pushBeerObjToBackEnd(newBeer);
-    // add beer to view
-    // prependBeerCardToContainer(favoriteBeerContainer, newBeer);
-    // loadContainer(favoriteBeerContainer);
 }
 
-function updateBeerFavoritesData(newBeerCard) {
-    // TODO Update beer fields here - put call'
+function updateBeerFavoritesData(beerEditBtn, newBeerCard) {
     // Display inputs for all fields
     // Flip the button text
     const listItems = newBeerCard.children;
-    console.log(listItems);
     const listArray = Array.from(listItems);
-    console.log(listArray);
     if (beerEditBtn.innerHTML === "Edit") {
         // User clicked edit button
         beerEditBtn.innerHTML = "Save";
-        // Show input fields
+        // Create and display input fields
         for (let index = 0; index < listArray.length; index++) {
             let currElement = listArray[index];
             // Add inputs for children ending at the first button
@@ -155,7 +150,7 @@ function createBeerCard(beerObj) {
     let beerEditBtn = document.createElement("button");
     beerEditBtn.innerHTML = "Edit";
     beerEditBtn.addEventListener("click", () => {
-        updateBeerFavoritesData(newBeerCard);
+        updateBeerFavoritesData(beerEditBtn, newBeerCard);
     });
     newBeerCard.appendChild(beerEditBtn);
 
