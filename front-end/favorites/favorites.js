@@ -1,7 +1,3 @@
-import {
-    userInfo
-} from "os";
-
 // Constants
 const HEROKU_BACK_END_BASE_URL = "https://hopin-back-end.herokuapp.com"
 const addFavBeerForm = document.getElementById("add-favorite-beer-form");
@@ -11,6 +7,9 @@ addFavBeerForm.addEventListener('submit', addFavoriteBeer);
 // Fill container on initial load
 loadContainer(favoriteBeerContainer);
 
+// Loads a container and fills it with
+// user favorites data from heroku back end
+// container -> a div container intending to hold child elements
 function loadContainer(container) {
     // clear beer container
     container.innerHTML = "";
@@ -35,9 +34,12 @@ function loadContainer(container) {
 // event -> the event that called this function
 function addFavoriteBeer(event) {
     event.preventDefault();
+    // Get the relevant data object
     let beerFormData = event.target;
-
+    // Generate a random id for the new beer
+    // TODO Change to back end implementation
     let id = randomNumberInRange(100, 10000);
+    // Create all beer object fields
     let name = beerFormData[0].value;
     let imgUrl = beerFormData[1].value;
     let category = beerFormData[2].value;
@@ -54,28 +56,42 @@ function addFavoriteBeer(event) {
     pushBeerObjToBackEnd(newBeer);
 }
 
+function editButtonCondition(beerEditBtn, listArray) {
+    // Flip button's purpose and text to save
+    beerEditBtn.innerHTML = "Save";
+    // Create and display input fields
+    for (let index = 0; index < listArray.length; index++) {
+        let currElement = listArray[index];
+        // Add inputs for children ending at the first button
+        if (currElement.localName === "button") {
+            // Condition where we hit the edit button itself
+            // break loop
+            break;
+        }
+        // Create an input for each child and place it adjacently after child
+        let editInput = document.createElement("input");
+        if (currElement.nextSibling) {
+            currElement.parentNode.insertBefore(editInput, currElement.nextSibling);
+        } else {
+            currElement.parentNode.appendChild(editInput);
+        }
+    }
+}
+
+// Updates the beer data in heroku backend
+// Invokved when the edit button is clicked
+// Displays input fields next to beer information
+// and sends/updates/puts new values into the backend
+// when Save is clicked.
+// beerEditBtn -> the edit button for each beer card
+// newBeerCard -> the beer card element
 function updateBeerFavoritesData(beerEditBtn, newBeerCard) {
-    // Display inputs for all fields
-    // Flip the button text
+    // Create array of children elements to iterate over
     const listItems = newBeerCard.children;
     const listArray = Array.from(listItems);
+    // User clicks Edit initally
     if (beerEditBtn.innerHTML === "Edit") {
-        // User clicked edit button
-        beerEditBtn.innerHTML = "Save";
-        // Create and display input fields
-        for (let index = 0; index < listArray.length; index++) {
-            let currElement = listArray[index];
-            // Add inputs for children ending at the first button
-            if (currElement.localName === "button") {
-                break;
-            }
-            let editInput = document.createElement("input");
-            if (currElement.nextSibling) {
-                currElement.parentNode.insertBefore(editInput, currElement.nextSibling);
-            } else {
-                currElement.parentNode.appendChild(editInput);
-            }
-        }
+        editButtonCondition(beerEditBtn, listArray);
 
     } else {
         // User clicked save button
