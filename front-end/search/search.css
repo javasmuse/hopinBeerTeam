@@ -88,16 +88,23 @@ align-content: space-between;
     margin: 1rem;
 }
 
+#cards {
+    /* display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; */
+}
 
-.beer_card {
+
+
+#beer_card {
     background-color: transparent;
     width: 250px;
     height: 250px;
     /* border: 1px solid #f1f1f1; */
     perspective: 1000px;
-}
+  }
 
-.bc_inner {
+#bee_Card {
 position: relative;
 width: 100%;
 height: 100%;
@@ -106,11 +113,11 @@ transition: transform 0.8s;
 transform-style: preserve-3d;
 }
 
-.beer_card:hover .bc_inner {
+#beer_card:hover #bee_Card {
     transform: rotateY(180deg);
 }
 
-.bc_front, .bc_back {
+#newCard, #nextCard {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -118,11 +125,11 @@ transform-style: preserve-3d;
     backface-visibility: hidden;
 }
 
-.bc_front {
+#newCard {
     align-self: center;
 }
 
-.bc_back {
+#nextCard {
     text-align: center;
     background-color: dodgerblue;
     color: white;
