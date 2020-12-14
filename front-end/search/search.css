@@ -91,12 +91,12 @@ align-content: space-between;
 #cards {
     /* display: flex;
     flex-wrap: wrap;
-    justify-content: space-between; */
+    justify-content: center;
+    flex-direction: column;
+    flex-grow: 0 3; */
 }
 
-
-
-#beer_card {
+#flip_card {
     background-color: transparent;
     width: 250px;
     height: 250px;
@@ -104,7 +104,7 @@ align-content: space-between;
     perspective: 1000px;
   }
 
-#bee_Card {
+#card_inner {
 position: relative;
 width: 100%;
 height: 100%;
@@ -113,11 +113,11 @@ transition: transform 0.8s;
 transform-style: preserve-3d;
 }
 
-#beer_card:hover #bee_Card {
+#flip_card:hover #card_inner {
     transform: rotateY(180deg);
 }
 
-#newCard, #nextCard {
+#card_front, #card_back {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -125,11 +125,11 @@ transform-style: preserve-3d;
     backface-visibility: hidden;
 }
 
-#newCard {
-    align-self: center;
+#card_front {
+    /* align-self: center; */
 }
 
-#nextCard {
+#card_back {
     text-align: center;
     background-color: dodgerblue;
     color: white;
@@ -138,7 +138,7 @@ transform-style: preserve-3d;
 
 #photoHere {
     max-width: 250px;
-    max-height: 250px;
+    max-height: 250px ;
 }
 
 

@@ -49,8 +49,7 @@ function getBeers(event) {
             let beerList = beers.filter(
                 (bee) => bee.country === bCountry && bee.type === bType
             );
-            // displayCards(beerList);  --- uncomment this when line 53 works 
-            console.log(beerList);
+            displayCards(beerList);
 
         }
     });
@@ -62,72 +61,73 @@ function getBeers(event) {
 
             // create new CARD
             let beerCard = document.createElement("div");
-            beerCard.setAttribute("id", "bee_Card");
-            document.getElementById("bc_inner").appendChild(beerCard);
+            beerCard.setAttribute("id", "flip_card");
+            document.getElementById("cards").appendChild(beerCard);
+
+            let innerCard = document.createElement("div");
+            innerCard.setAttribute("id", "card_inner");
+            document.getElementById("flip_card").appendChild(innerCard);
 
             // append below to this ^ new card and the CSS for flip also
             // let newCard = document.createElement("div");
             // newCard.setAttribute("id", "new_card");
             // document.getElementById("bc_front").appendChild(newCard);
 
+            let cardFront = document.createElement("div");
+            cardFront.setAttribute("id", "card_front");
+            document.getElementById("card_inner").appendChild(cardFront);
 
+            let cardBack = document.createElement("div");
+            cardBack.setAttribute("id", "card_back");
+            document.getElementById("card_inner").appendChild(cardBack);
+
+
+            // check photo url for 404 if yes sub in static pic
             axios.get(beerRequested[i].image_url).then((res) => {
 
                 let photoURL = beerRequested[i].image_url;
                 let image = document.createElement("img");
+                image.setAttribute("id", "photoHere");
                 image.src = photoURL;
-                document.getElementById("bee_Card").appendChild(image);
+                document.getElementById("card_front").appendChild(image);
             }).catch(error => {
                 const staticImage = ("https://upload.wikimedia.org/wikipedia/commons/e/eb/Volles_Pint-Glas.jpg");
                 let image = document.createElement("img");
+                image.setAttribute("id", "photoHere");
                 image.src = staticImage;
-                document.getElementById("bee_Card").appendChild(image);
+                document.getElementById("card_front").appendChild(image);
             });
 
-
-            let nextCard = document.createElement("div");
-            nextCard.setAttribute("id", "next_card");
-            document.getElementById("bee_Card").appendChild(nextCard);
 
             let insertName = document.createElement("p");
             insertName.setAttribute("id", "name");
             insertName.innerHTML = `Name: ${beerRequested[i].name}`;
-            document.getElementById("bee_Card").appendChild(insertName);
+            document.getElementById("card_back").appendChild(insertName);
 
-            // let insertHereName = document.getElementById("name");
-            // insertHereName.innerHTML = "Name:  " + beerRequested[i].name;
 
             let insertStyle = document.createElement("p");
             insertStyle.setAttribute("id", "style");
-            insertStyle.innerHTML = `Name: ${beerRequested[i].style}`;
-            document.getElementById("bee_Card").appendChild(insertStyle);
+            insertStyle.innerHTML = `Style: ${beerRequested[i].style}`;
+            document.getElementById("card_back").appendChild(insertStyle);
 
-            // let insertHereStyle = document.getElementById("style");
-            // insertHereStyle.innerHTML = "Style:  " + beerRequested[i].type;
 
             let insertABV = document.createElement("p");
             insertABV.setAttribute("id", "abv");
-            insertABV.innerHTML = `Name: ${beerRequested[i].abv}`;
-            document.getElementById("bee_Card").appendChild(insertABV);
+            insertABV.innerHTML = `ABV:  ${beerRequested[i].abv}%`;
+            document.getElementById("card_back").appendChild(insertABV);
 
-            // let insertHereABV = document.getElementById("abv");
-            // insertHereABV.innerHTML = `ABV: ${beerRequested[i].abv}%`;
 
             let insertPlace = document.createElement("p");
             insertPlace.setAttribute("id", "place");
-            insertPlace.innerHTML = `Name: ${beerRequested[i].country}`;
-            document.getElementById("next_card").appendChild(insertPlace);
+            insertPlace.innerHTML = `Country: ${beerRequested[i].country}`;
+            document.getElementById("card_back").appendChild(insertPlace);
 
-            // let inHereCountry = document.getElementById("place");
-            // inHereCountry.innerHTML = `Origin: ${beerRequested[i].country}`;
 
             let insertBrewer = document.createElement("p");
             insertBrewer.setAttribute("id", "brewer");
-            insertBrewer.innerHTML = `Name: ${beerRequested[i].brewer}`;
-            document.getElementById("next_card").appendChild(insertBrewer);
+            insertBrewer.innerHTML = `Brewer: ${beerRequested[i].brewer}`;
+            document.getElementById("card_back").appendChild(insertBrewer);
 
-            // let insertHereBrewer = document.getElementById("brewer");
-            // insertHereBrewer.innerHTML = `Brewed by:  ${beerRequested[i].brewer}`;
         }
 
     }
@@ -141,7 +141,6 @@ function getBeers(event) {
                 let num = Math.floor(Math.random() * beers.length);
                 beerArray.push(beers[num]);
             }
-            // console.log(beerArray);
             // displayCards(beerArray);
         });
     }
