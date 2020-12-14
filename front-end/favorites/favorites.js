@@ -41,7 +41,7 @@ function addFavoriteBeer(event) {
     let id = randomNumberInRange(100, 10000);
     // Create all beer object fields
     let name = beerFormData[0].value;
-    let imgUrl = beerFormData[1].value;
+    let image_url = beerFormData[1].value;
     let category = beerFormData[2].value;
     let abv = beerFormData[3].value;
     let type = beerFormData[4].value;
@@ -50,7 +50,7 @@ function addFavoriteBeer(event) {
     let comments = [];
 
     // Create the new beer object
-    let newBeer = new Beer(id, name, imgUrl, category,
+    let newBeer = new Beer(id, name, image_url, category,
         abv, type, brewer, country, comments);
     // Add the new beer object to heroku backend
     pushBeerObjToBackEnd(newBeer);
@@ -114,7 +114,7 @@ function saveButtonCondition(beerEditBtn, newBeerCard, listArray) {
     // Initialize new beer data
     let updatedBeerData = {
         name: allEditInputs[1].value,
-        imgUrl: allEditInputs[2].value,
+        image_url: allEditInputs[2].value,
         category: allEditInputs[3].value,
         abv: allEditInputs[4].value,
         type: allEditInputs[5].value,
@@ -191,15 +191,15 @@ function randomNumberInRange(min, max) {
 // Beer object template
 // id is beer_id from api call
 // name is name form api call
-// imgUrl is image url from api call
+// image_url is image url from api call
 // ... and so on
 // exception is comments. initialize as
 // empty array if no data is available
-function Beer(id, name, imgUrl, category, abv,
+function Beer(id, name, image_url, category, abv,
     type, brewer, country, comments) {
     this.id = id;
     this.name = name;
-    this.imgUrl = imgUrl;
+    this.image_url = image_url;
     this.category = category;
     this.abv = abv;
     this.type = type;
@@ -229,7 +229,7 @@ function createBeerCard(beerObj) {
 
     // Create, set value and append to parent the image url
     let beerImageElement = document.createElement("img");
-    beerImageElement.src = beerObj.imgUrl;
+    beerImageElement.src = beerObj.image_url;
     newBeerCard.appendChild(beerImageElement);
 
     // Create, set value and append to parent the beer category
@@ -260,6 +260,7 @@ function createBeerCard(beerObj) {
     // Create a button to edit
     let beerEditBtn = document.createElement("button");
     beerEditBtn.innerHTML = "Edit";
+    beerEditBtn.className = "yes";
     beerEditBtn.addEventListener("click", () => {
         updateBeerFavoritesData(beerEditBtn, newBeerCard);
     });
@@ -268,6 +269,7 @@ function createBeerCard(beerObj) {
     // Create a button to delete
     let beerDeleteBtn = document.createElement("button");
     beerDeleteBtn.innerHTML = "Delete";
+    beerDeleteBtn.className = "yes";
     beerDeleteBtn.addEventListener("click", () => {
         deleteBeerObjFromBackEnd(beerObj.id);
     });

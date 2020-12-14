@@ -1,15 +1,36 @@
 @media screen and (max-width: 640px) {}
 
 #favorites-container {
-    display: grid;
-    grid-auto-rows: auto;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    text-align: center;
     max-width: 100vw;
-    height: 100vh;
-    background-color: lightblue;
+    margin-top: 1%;
+    background-color: rgba(0, 148, 44, 0.911);
 }
 
 .beer-card {
-    border: 1px solid black;
-    background-color: lightcoral;
+    display: flex;
+    flex-direction: column;
+    min-width: 20%;
+    padding: 2%;
+    margin: 0.5%;
+}
+
+h3 {
+    font-size: xx-large;
+}
+
+body {
+    font-family: "Khand";
+}
+
+#add-favorite-beer-form {}
+
+img {
+    object-fit: cover;
+    width: 100%;
+    height: 20%;
 }
