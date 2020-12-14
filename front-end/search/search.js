@@ -90,7 +90,7 @@ function getBeers(event) {
                 image.src = photoURL;
                 cardFront.appendChild(image);
             }).catch(error => {
-                const staticImage = ("https://upload.wikimedia.org/wikipedia/commons/e/eb/Volles_Pint-Glas.jpg");
+                const staticImage = ("/front-end/resources/default_beer_image_HOPin.png");
                 let image = document.createElement("img");
                 image.setAttribute("id", "photoHere");
                 image.src = staticImage;
@@ -127,7 +127,34 @@ function getBeers(event) {
             insertBrewer.innerHTML = `Brewer: ${beerRequested[i].brewer}`;
             cardBack.appendChild(insertBrewer);
 
+            let detailsDiv = document.createElement("div");
+            detailsDiv.setAttribute("id", "details");
+
+            // let favoritesBtn = document.createElement("div");
+            // favoritesBtn.setAttribute("class", "favoritesBtn");
+            // favoritesBtn.setAttribute("type", "button");
+            // favoritesBtn.textContent = "Add to Favorites";
+            // cardBack.appendChild(favoritesBtn);
+            // favoritesBtn.onclick = makeFavorite();
+
+            // function makeFavorite() {
+            //     console.log("on click");
+
+            // }
+
+            let postbtn = document.createElement("BUTTON");
+            postbtn.value = beerRequested[i];
+            postbtn.innerHTML = "Add to Favorites";
+            cardBack.appendChild(postbtn);
+
+            postbtn.addEventListener("click", adToFavs);
+
         }
+    }
+
+    function adToFavs(event) {
+        event.preventDefault();
+        console.log("beerRequested");
 
     }
 

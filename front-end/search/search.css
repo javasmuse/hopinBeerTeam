@@ -134,6 +134,16 @@ transform-style: preserve-3d;
     transform: rotateY(180deg);
 }
 
+/* .favoritesBtn {
+  background-color: #eee;
+  color: black;
+  cursor: pointer;
+  font-size: 15px;
+  text-align: center;
+  padding: 20px 24px;
+  width: 10px;
+} */
+
 #photoHere {
     max-height: 300px;
     max-width: 300px;
