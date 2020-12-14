@@ -260,6 +260,7 @@ function createBeerCard(beerObj) {
     // Create a button to edit
     let beerEditBtn = document.createElement("button");
     beerEditBtn.innerHTML = "Edit";
+    beerEditBtn.className = "yes";
     beerEditBtn.addEventListener("click", () => {
         updateBeerFavoritesData(beerEditBtn, newBeerCard);
     });
@@ -268,6 +269,7 @@ function createBeerCard(beerObj) {
     // Create a button to delete
     let beerDeleteBtn = document.createElement("button");
     beerDeleteBtn.innerHTML = "Delete";
+    beerDeleteBtn.className = "yes";
     beerDeleteBtn.addEventListener("click", () => {
         deleteBeerObjFromBackEnd(beerObj.id);
     });
