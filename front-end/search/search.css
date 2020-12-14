@@ -89,17 +89,15 @@ align-content: space-between;
 }
 
 #cards {
-    /* display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    flex-direction: column;
-    flex-grow: 0 3; */
+    /* display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 1rem; */
 }
 
 #flip_card {
     background-color: transparent;
-    width: 250px;
-    height: 250px;
+    width: 300px;
+    height: 300px;
     /* border: 1px solid #f1f1f1; */
     perspective: 1000px;
   }
@@ -126,7 +124,7 @@ transform-style: preserve-3d;
 }
 
 #card_front {
-    /* align-self: center; */
+    align-self: center;
 }
 
 #card_back {
@@ -137,8 +135,8 @@ transform-style: preserve-3d;
 }
 
 #photoHere {
-    max-width: 250px;
-    max-height: 250px ;
+    max-height: 300px;
+    max-width: 300px;
 }
 
 
