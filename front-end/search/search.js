@@ -56,7 +56,6 @@ function getBeers(event) {
     });
 
     function displayCards(beerRequested) {
-
         // loop through the beer array sent in and make cards for each beer
         for (let i = 0; i < beerRequested.length; i++) {
 

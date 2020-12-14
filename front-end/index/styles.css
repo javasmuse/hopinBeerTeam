@@ -155,7 +155,7 @@
     min-width: 40%;
     background-color: #4CAF50;
     margin: 10px;
-    opacity: 0.9;
+    padding: 10px;
 }
 
 .pageBtn {
@@ -178,6 +178,13 @@
 .beer-card {
     background-color: #222;
 }
+
+.cardImage {
+    object-position: 50% 50%;
+    width: 25%;
+    height: 15%;
+}
+
 
 
 @media screen and (max-width: 640px) {

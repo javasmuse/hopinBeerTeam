@@ -51,6 +51,113 @@ function underAge() {
     page.appendChild(container);
 };
 
+// randomizer stuff
+
+function randomTenBeers() {
+    axios.get("http://ontariobeerapi.ca/beers").then((res) => {
+        let beers = res.data;
+        let beerArray = [];
+
+        for (let i = 0; i < 10; i++) {
+            let num = Math.floor(Math.random() * beers.length);
+            beerArray.push(beers[num]);
+        }
+        displayCards(beerArray);
+    });
+}
+randomTenBeers();
+
+function displayCards(beerRequested) {
+
+    // loop through the beer array sent in and make cards for each beer
+    for (let i = 0; i < beerRequested.length; i++) {
+        
+        const rndBeerCont = document.getElementById("rndBeerCont");
+
+        // create new CARD
+        let beerCard = document.createElement("div");
+        beerCard.setAttribute("id", "bee_Card");
+        document.getElementById("rndBeerCont").appendChild(beerCard);
+
+        // append below to this ^ new card and the CSS for flip also
+        // let newCard = document.createElement("div");
+        // newCard.setAttribute("id", "new_card");
+        // document.getElementById("bc_front").appendChild(newCard);
+
+
+        axios.get(beerRequested[i].image_url).then((res) => {
+
+            let photoURL = beerRequested[i].image_url;
+            let image = document.createElement("img");
+            
+            image.src = photoURL;
+            image.setAttribute("class", "cardImage");
+            document.getElementById("bee_Card").appendChild(image);
+        }).catch(error => {
+            let image = document.createElement("img");
+            image.src = "../resources/default_beer_image_HOPin.png";
+            image.setAttribute("class", "cardImage");
+            document.getElementById("bee_Card").appendChild(image);
+        });
+
+
+        let nextCard = document.createElement("div");
+        nextCard.setAttribute("id", "next_card");
+        document.getElementById("bee_Card").appendChild(nextCard);
+
+        let insertName = document.createElement("p");
+        insertName.setAttribute("id", "name");
+        insertName.innerHTML = `Name: ${beerRequested[i].name}`;
+        document.getElementById("bee_Card").appendChild(insertName);
+
+        // let insertHereName = document.getElementById("name");
+        // insertHereName.innerHTML = "Name:  " + beerRequested[i].name;
+
+        let insertStyle = document.createElement("p");
+        insertStyle.setAttribute("id", "style");
+        insertStyle.innerHTML = `Name: ${beerRequested[i].style}`;
+        document.getElementById("bee_Card").appendChild(insertStyle);
+
+        // let insertHereStyle = document.getElementById("style");
+        // insertHereStyle.innerHTML = "Style:  " + beerRequested[i].type;
+
+        let insertABV = document.createElement("p");
+        insertABV.setAttribute("id", "abv");
+        insertABV.innerHTML = `Name: ${beerRequested[i].abv}`;
+        document.getElementById("bee_Card").appendChild(insertABV);
+
+        // let insertHereABV = document.getElementById("abv");
+        // insertHereABV.innerHTML = `ABV: ${beerRequested[i].abv}%`;
+
+        let insertPlace = document.createElement("p");
+        insertPlace.setAttribute("id", "place");
+        insertPlace.innerHTML = `Name: ${beerRequested[i].country}`;
+        document.getElementById("next_card").appendChild(insertPlace);
+
+        // let inHereCountry = document.getElementById("place");
+        // inHereCountry.innerHTML = `Origin: ${beerRequested[i].country}`;
+
+        let insertBrewer = document.createElement("p");
+        insertBrewer.setAttribute("id", "brewer");
+        insertBrewer.innerHTML = `Name: ${beerRequested[i].brewer}`;
+        document.getElementById("next_card").appendChild(insertBrewer);
+
+        // let insertHereBrewer = document.getElementById("brewer");
+        // insertHereBrewer.innerHTML = `Brewed by:  ${beerRequested[i].brewer}`;
+
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
 
 //Favorites stuff
 
