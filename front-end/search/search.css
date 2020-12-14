@@ -4,6 +4,12 @@ body {
    background-color: rgb(37, 37, 37);
    color: white;
    font-family: 'Khand';
+
+    background-image: url(https://images3.alphacoders.com/276/276637.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
 }
 /* NAV BAR WITH LOGO */
 .navLogo {

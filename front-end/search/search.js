@@ -1,4 +1,5 @@
 // document.getElementById("getAll").addEventListener("click", getAllBeers);
+const HEROKU_BACK_END_BASE_URL = "https://hopin-back-end.herokuapp.com";
 
 function getAllBeers(event) {
     event.preventDefault(event);
@@ -143,19 +144,47 @@ function getBeers(event) {
             // }
 
             let postbtn = document.createElement("BUTTON");
-            postbtn.value = beerRequested[i];
+
             postbtn.innerHTML = "Add to Favorites";
             cardBack.appendChild(postbtn);
 
-            postbtn.addEventListener("click", adToFavs);
+            postbtn.addEventListener("click", () => {
+                pushBeerObjToBackEnd(beerRequested[i]);
+            });
 
         }
     }
 
-    function adToFavs(event) {
-        event.preventDefault();
-        console.log("beerRequested");
+    function pushBeerObjToBackEnd(beerObj) {
+        axios.post(`${HEROKU_BACK_END_BASE_URL}/user/favorites`, beerObj)
+            .then(function (response) {
+                if (response.data === "success") {
+                    loadContainer(document.getElementById("cards"));
+                    alert("We added your new favorite beer!");
+                }
+            })
+            .catch(function (error) {
+                alert(error);
+                console.log(error);
+            });
+    }
 
+    function loadContainer(container) {
+        // clear beer container
+        container.innerHTML = "";
+        axios.get(`${HEROKU_BACK_END_BASE_URL}/user/favorites`)
+            .then(function (response) {
+                // For all favorited beer objects from heroku
+                // build beer card and
+                response.data.map(favBeer => {
+                    let newBeerCard = createBeerCard(favBeer);
+                    container.appendChild(newBeerCard);
+                });
+            })
+            .catch(function (error) {
+                alert(error);
+                console.log(error);
+            });
     }
 
     function randomTenBeers() {
