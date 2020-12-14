@@ -1,11 +1,11 @@
-// DONT WORRY ABOUT CSS FOR NOW!!!
+// Constants
 const HEROKU_BACK_END_BASE_URL = "https://hopin-back-end.herokuapp.com"
 const addFavBeerForm = document.getElementById("add-favorite-beer-form");
 const favoriteBeerContainer = document.getElementById("favorites-container");
-// favoriteBeerContainer.addEventListener("load", loadFavoritesContainer);
+// Give our form submit functionality
 addFavBeerForm.addEventListener('submit', addFavoriteBeer);
+// Fill container on initial load
 loadContainer(favoriteBeerContainer);
-
 
 function loadContainer(container) {
     // clear beer container
@@ -47,7 +47,7 @@ function addFavoriteBeer(event) {
     pushBeerObjToBackEnd(newBeer);
     // add beer to view
     // prependBeerCardToContainer(favoriteBeerContainer, newBeer);
-    loadContainer(favoriteBeerContainer);
+    // loadContainer(favoriteBeerContainer);
 }
 
 function updateBeerObj() {
@@ -60,6 +60,12 @@ function createBeerCard(beerObj) {
     // Create a container element to hold a new beer card
     let newBeerCard = document.createElement("div");
     newBeerCard.className = "beer-card";
+    // TODO Implement without showing id
+    let beerIdElement = document.createElement("p");
+    beerIdElement.class = "beer-id";
+    beerIdElement.innerHTML = beerObj.id;
+    newBeerCard.appendChild(beerIdElement);
+
     // Create, set value and append to parent the beer name
     let beerNameElement = document.createElement("h3");
     beerNameElement.textContent = beerObj.name;
@@ -95,6 +101,66 @@ function createBeerCard(beerObj) {
     beerCountryElement.innerHTML = beerObj.country;
     newBeerCard.appendChild(beerCountryElement);
 
+    // Create a button to edit
+    let beerEditBtn = document.createElement("button");
+    beerEditBtn.innerHTML = "Edit";
+    beerEditBtn.addEventListener("click", () => {
+        // TODO Update beer fields here - put call'
+        // Display inputs for all fields
+        // Flip the button text
+        const listItems = newBeerCard.children;
+        console.log(listItems);
+        const listArray = Array.from(listItems);
+        console.log(listArray);
+        if (beerEditBtn.innerHTML === "Edit") {
+            // User clicked edit button
+            beerEditBtn.innerHTML = "Save";
+            // Show input fields
+            for (let index = 0; index < listArray.length; index++) {
+                let currElement = listArray[index];
+                // Add inputs for children ending at the first button
+                if (currElement.localName === "button") {
+                    break;
+                }
+                let editInput = document.createElement("input");
+                if (currElement.nextSibling) {
+                    currElement.parentNode.insertBefore(editInput, currElement.nextSibling);
+                } else {
+                    currElement.parentNode.appendChild(editInput);
+                }
+            }
+
+        } else {
+            // User clicked save button
+            beerEditBtn.innerHTML = "Edit";
+            // Update back end data 
+            let allEditInputs = newBeerCard.getElementsByTagName("input");
+            let updatedBeerData = {
+                name: allEditInputs[1].value,
+                imgUrl: allEditInputs[2].value,
+                category: allEditInputs[3].value,
+                abv: allEditInputs[4].value,
+                type: allEditInputs[5].value,
+                brewer: allEditInputs[6].value,
+                country: allEditInputs[7].value
+            };
+            let beerId = listArray[0].innerHTML;
+            console.log(beerId);
+            axios.put(`${HEROKU_BACK_END_BASE_URL}/user/favorites/${beerId}`,
+                    updatedBeerData)
+                .then(function (response) {
+                    alert(response.data);
+                })
+                .catch(function (error) {
+                    alert(error);
+                    console.log(error);
+                });
+        }
+
+        // deleteBeerObjFromBackEnd(beerObj.id);
+    });
+    newBeerCard.appendChild(beerEditBtn);
+
     // Create a button to delete
     let beerDeleteBtn = document.createElement("button");
     beerDeleteBtn.innerHTML = "Delete";
@@ -123,6 +189,7 @@ function pushBeerObjToBackEnd(beerObj) {
         .then(function (response) {
             if (response.data === "success") {
                 alert("We added your new favorite beer!");
+                loadContainer(favoriteBeerContainer);
             }
         })
         .catch(function (error) {
@@ -135,6 +202,8 @@ function deleteBeerObjFromBackEnd(beerId) {
     axios.delete(`${HEROKU_BACK_END_BASE_URL}/user/favorites/${beerId}`)
         .then(function (response) {
             alert(response.data);
+            // TODO CHECK FOR SUCCESS MSG - IMPLEMENT/VERIFY IN BACKEND
+            loadContainer(favoriteBeerContainer);
         })
         .catch(function (error) {
             alert(error);
