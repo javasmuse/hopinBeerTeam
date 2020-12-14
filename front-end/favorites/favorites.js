@@ -149,12 +149,14 @@ function createBeerCard(beerObj) {
             axios.put(`${HEROKU_BACK_END_BASE_URL}/user/favorites/${beerId}`,
                     updatedBeerData)
                 .then(function (response) {
+                    loadContainer(favoriteBeerContainer);
                     alert(response.data);
                 })
                 .catch(function (error) {
                     alert(error);
                     console.log(error);
                 });
+
         }
 
         // deleteBeerObjFromBackEnd(beerObj.id);
@@ -188,8 +190,8 @@ function pushBeerObjToBackEnd(beerObj) {
     axios.post(`${HEROKU_BACK_END_BASE_URL}/user/favorites`, beerObj)
         .then(function (response) {
             if (response.data === "success") {
-                alert("We added your new favorite beer!");
                 loadContainer(favoriteBeerContainer);
+                alert("We added your new favorite beer!");
             }
         })
         .catch(function (error) {
@@ -201,9 +203,9 @@ function pushBeerObjToBackEnd(beerObj) {
 function deleteBeerObjFromBackEnd(beerId) {
     axios.delete(`${HEROKU_BACK_END_BASE_URL}/user/favorites/${beerId}`)
         .then(function (response) {
-            alert(response.data);
             // TODO CHECK FOR SUCCESS MSG - IMPLEMENT/VERIFY IN BACKEND
             loadContainer(favoriteBeerContainer);
+            alert(response.data);
         })
         .catch(function (error) {
             alert(error);
