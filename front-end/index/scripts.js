@@ -75,12 +75,12 @@ function displayCards(beerRequested) {
 
         // create new CARD
         let beerCard = document.createElement("div");
-        beerCard.setAttribute("id", "flip_card");
+        beerCard.setAttribute("class", "flip_card");
         document.getElementById("cards").appendChild(beerCard);
 
         let innerCard = document.createElement("div");
-        innerCard.setAttribute("id", "card_inner");
-        document.getElementById("flip_card").appendChild(innerCard);
+        innerCard.setAttribute("class", "card_inner");
+        beerCard.appendChild(innerCard);
 
         // append below to this ^ new card and the CSS for flip also
         // let newCard = document.createElement("div");
@@ -88,14 +88,12 @@ function displayCards(beerRequested) {
         // document.getElementById("bc_front").appendChild(newCard);
 
         let cardFront = document.createElement("div");
-        cardFront.setAttribute("id", "card_front");
-        document.getElementById("card_inner").appendChild(cardFront);
+        cardFront.setAttribute("class", "card_front");
+        innerCard.appendChild(cardFront);
 
         let cardBack = document.createElement("div");
-        cardBack.setAttribute("id", "card_back");
-        document.getElementById("card_inner").appendChild(cardBack);
-
-
+        cardBack.setAttribute("class", "card_back");
+        innerCard.appendChild(cardBack);
         // check photo url for 404 if yes sub in static pic
         axios.get(beerRequested[i].image_url).then((res) => {
 
@@ -103,43 +101,43 @@ function displayCards(beerRequested) {
             let image = document.createElement("img");
             image.src = photoURL;
             image.setAttribute("class", "cardImage");
-            document.getElementById("card_front").appendChild(image);
+            cardFront.appendChild(image);
         }).catch(error => {
             let image = document.createElement("img");
             image.src = "../resources/default_beer_image_HOPin.png";
             image.setAttribute("class", "cardImage");
-            document.getElementById("card_front").appendChild(image);
+            cardFront.appendChild(image);
         });
 
 
         let insertName = document.createElement("p");
-        insertName.setAttribute("id", "name");
-        insertName.innerHTML = `Name: ${beerRequested[i].name}`;
-        document.getElementById("card_back").appendChild(insertName);
+            insertName.setAttribute("id", "name");
+            insertName.innerHTML = `Name: ${beerRequested[i].name}`;
+            cardBack.appendChild(insertName);
 
 
-        let insertStyle = document.createElement("p");
-        insertStyle.setAttribute("id", "style");
-        insertStyle.innerHTML = `Style: ${beerRequested[i].style}`;
-        document.getElementById("card_back").appendChild(insertStyle);
+            let insertStyle = document.createElement("p");
+            insertStyle.setAttribute("id", "style");
+            insertStyle.innerHTML = `Style: ${beerRequested[i].style}`;
+            cardBack.appendChild(insertStyle);
 
 
-        let insertABV = document.createElement("p");
-        insertABV.setAttribute("id", "abv");
-        insertABV.innerHTML = `ABV:  ${beerRequested[i].abv}%`;
-        document.getElementById("card_back").appendChild(insertABV);
+            let insertABV = document.createElement("p");
+            insertABV.setAttribute("id", "abv");
+            insertABV.innerHTML = `ABV:  ${beerRequested[i].abv}%`;
+            cardBack.appendChild(insertABV);
 
 
-        let insertPlace = document.createElement("p");
-        insertPlace.setAttribute("id", "place");
-        insertPlace.innerHTML = `Country: ${beerRequested[i].country}`;
-        document.getElementById("card_back").appendChild(insertPlace);
+            let insertPlace = document.createElement("p");
+            insertPlace.setAttribute("id", "place");
+            insertPlace.innerHTML = `Country: ${beerRequested[i].country}`;
+            cardBack.appendChild(insertPlace);
 
 
-        let insertBrewer = document.createElement("p");
-        insertBrewer.setAttribute("id", "brewer");
-        insertBrewer.innerHTML = `Brewer: ${beerRequested[i].brewer}`;
-        document.getElementById("card_back").appendChild(insertBrewer);
+            let insertBrewer = document.createElement("p");
+            insertBrewer.setAttribute("id", "brewer");
+            insertBrewer.innerHTML = `Brewer: ${beerRequested[i].brewer}`;
+            cardBack.appendChild(insertBrewer);
 
     }
 
