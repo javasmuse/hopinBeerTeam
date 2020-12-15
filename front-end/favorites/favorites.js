@@ -42,14 +42,15 @@ function addFavoriteBeer(event) {
     // Create all beer object fields
     let name = beerFormData[0].value;
     let image_url = beerFormData[1].value;
-    let style = beerFormData[2].value;
+    let category = beerFormData[2].value;
     let abv = beerFormData[3].value;
-    let brewer = beerFormData[4].value;
-    let country = beerFormData[5].value;
+    let style = beerFormData[4].value;
+    let brewer = beerFormData[5].value;
+    let country = beerFormData[6].value;
 
     // Create the new beer object
-    let newBeer = new Beer(id, name, image_url, style,
-        abv, brewer, country);
+    let newBeer = new Beer(id, name, image_url, category, abv, style,
+        brewer, country);
     // Add the new beer object to heroku backend
     pushBeerObjToBackEnd(newBeer);
 }
@@ -108,15 +109,18 @@ function setPlaceHolderText(inputElement, index) {
             inputElement.placeholder = "Choose a new image url";
             break;
         case 2:
-            inputElement.placeholder = "Pick a new style";
+            inputElement.placeholder = "Pick a new category";
             break;
         case 3:
             inputElement.placeholder = "Enter alcohol by volume";
             break;
         case 4:
-            inputElement.placeholder = "Who is the brewer";
+            inputElement.placeholder = "Pick a new style";
             break;
         case 5:
+            inputElement.placeholder = "Who is the brewer";
+            break;
+        case 6:
             inputElement.placeholder = "Country of origin";
             break;
         default:
@@ -133,17 +137,17 @@ function setPlaceHolderText(inputElement, index) {
 // listArray -> the children of the beer card ie. name, abv etc.
 function saveButtonCondition(beerEditBtn, newBeerCard, beerId) {
     // User clicked save button
-    beerEditBtn.innerHTML = "Edit";
     // Update back end data 
     let allEditInputs = newBeerCard.getElementsByTagName("input");
     // Initialize new beer data
     let updatedBeerData = {
         name: allEditInputs[0].value,
         image_url: allEditInputs[1].value,
-        style: allEditInputs[2].value,
+        category: allEditInputs[2].value,
         abv: allEditInputs[3].value,
-        brewer: allEditInputs[4].value,
-        country: allEditInputs[5].value,
+        style: allEditInputs[4].value,
+        brewer: allEditInputs[5].value,
+        country: allEditInputs[6].value,
     };
     // Update/put call to heroku back end
     axios.put(`${HEROKU_BACK_END_BASE_URL}/user/favorites/${beerId}`,
@@ -217,12 +221,13 @@ function randomNumberInRange(min, max) {
 // ... and so on
 // exception is comments. initialize as
 // empty array if no data is available
-function Beer(id, name, image_url, style, abv, brewer, country) {
+function Beer(id, name, image_url, category, abv, style, brewer, country) {
     this.id = id;
     this.name = name;
     this.image_url = image_url;
-    this.style = style;
+    this.category = category;
     this.abv = abv;
+    this.style = style;
     this.brewer = brewer;
     this.country = country;
 }
@@ -246,7 +251,7 @@ function createBeerCard(beerObj) {
     let beerNameElement = document.createElement("h3");
     beerNameElement.setAttribute("id", "nameEl");
     beerNameElement.textContent = beerObj.name.toUpperCase();
-    beerNameElement.innerHTML = `name: ${beerObj.name}`;
+    beerNameElement.innerHTML = `${beerObj.name}`;
     newBeerCard.appendChild(beerNameElement);
 
     // Create, set value and append to parent the image url
@@ -255,10 +260,9 @@ function createBeerCard(beerObj) {
     beerImageElement.src = beerObj.image_url;
     newBeerCard.appendChild(beerImageElement);
 
-
     // Create, set value and append to parent the beer category
     let beerCategoryElement = document.createElement("p");
-    beerCategoryElement.innerHTML = `cat: ${beerObj.category}`;
+    beerCategoryElement.innerHTML = `category: ${beerObj.category}`;
     newBeerCard.appendChild(beerCategoryElement);
 
     // Create, set value and append to parent the beer abv
@@ -267,21 +271,21 @@ function createBeerCard(beerObj) {
     newBeerCard.appendChild(beerAbvElement);
 
     // Create, set value and append to parent the beer type
-    let beerTypeElement = document.createElement("p");
-    beerTypeElement.innerHTML = `style: ${beerObj.type}`;
-    newBeerCard.appendChild(beerTypeElement);
+    let beerStyleElement = document.createElement("p");
+    beerStyleElement.innerHTML = `style: ${beerObj.style}`;
+    newBeerCard.appendChild(beerStyleElement);
 
     // Create, set value and append to parent the beer brewer
     let beerBrewerElement = document.createElement("p");
     beerBrewerElement.innerHTML = `brewer: ${beerObj.brewer}`;
-  
+
     newBeerCard.appendChild(beerBrewerElement);
 
     // Create, set value and append to parent the beer country
     let beerCountryElement = document.createElement("p");
 
     beerCountryElement.innerHTML = `origin: ${beerObj.country}`;
-  
+
     newBeerCard.appendChild(beerCountryElement);
 
     // Create a button to edit
@@ -374,16 +378,6 @@ function underAge() {
     // Append container to body;
     page.appendChild(container);
 };
-//TODO ids
-//TODO Center the header
-//TODO Change edit response
-//TODO Delete response back to user
-//TODO Placeholder text for edit input fields
-//TODO Response name 127.0.0.1:55000 (alert)
-//TODO Check for duplicate 
 
 
-//TODO Normalize the data being sent to back end
-//TODO Change object "type" field to style when displaying
-//TODO Remove comments for now
 //TODO Add ratings

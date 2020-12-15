@@ -37,15 +37,17 @@ body {
 #add-favorite-beer-form {
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
- #buttonOne, #buttonTwo {
-     margin: 0.4rem;
-     max-width: 4rem;
-     min-width: 4rem;
-     align-self: center;
- }
+#buttonOne,
+#buttonTwo {
+    margin: 0.4rem;
+    max-width: 4rem;
+    min-width: 4rem;
+    align-self: center;
+}
 
 img {
     object-fit: cover;
