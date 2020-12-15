@@ -15,16 +15,16 @@
 <body>
     <div class="ageVerBg" id="ageVerBg">
         <div class="age_Verification" id="ageVer">
-          <span class="ageVerTitle">
-            <h1>Age Verification</h1>
-          </span>
-          <span>
-            <p class="ageVerBody">Please indicate wether you are of legal drinking age in your country.</p>
-          </span>
-          <button class="yes" onclick="overAge()">Yes</button>
-          <button class="no" onclick="underAge()">No</button>
+            <span class="ageVerTitle">
+                <h1>Age Verification</h1>
+            </span>
+            <span>
+                <p class="ageVerBody">Please indicate wether you are of legal drinking age in your country.</p>
+            </span>
+            <button class="yes" onclick="overAge()">Yes</button>
+            <button class="no" onclick="underAge()">No</button>
         </div>
-      </div>
+    </div>
     <div class="topnav">
         <img class="navLogo" src="../resources/hopin.png" alt="">
         <a href="../index/index.html">Home</a>
@@ -35,39 +35,46 @@
 
     <div id="main_container">
 
-        <h1>Search Our Beers</h1>
-        <div id="allBeer">
+        <div id="heading">
+            <h1>Search Our Beers</h1>
+        </div>
+
+        <div id="searchBox">
+
             <div id="allBeers">
+
                 <h4>Click Here to See All Of Our Beers: </h4>
                 <button class="yes" type="submit" id="getAll">Show All Beers</button>
             </div>
-        </div>
 
-        <div id="search-container">
-            <form id="search-beers" action="" method="get">
-                <label for="beer_name">Beer Name: </label>
-                <input type="text" name="beer_name" id="beer_name" placeholder="Beer Name Here" />
-                <label for="beer_type">Select a Style of Beer:</label>
-                <select name="beer_type" id="beer_type">
-                    <option value=""></option>
-                    <option value="Porter">Porter</option>
-                    <option value="Stout">Stout</option>
-                    <option value="Lager">Lager</option>
-                    <option value="IPA">IPA</option>
-                    <option value="Pale Ale">Pale Ale</option>
-                </select>
-                <label for="beer_country">Select a Country of Origin:</label>
-                <select name="country" id="country">
-                    <option value=""></option>
-                    <option value="America">America</option>
-                    <option value="Canada">Canada</option>
-                    <option value="Mexico">Mexico</option>
-                    <option value="Japan">Japan</option>
-                    <option value="Germany">Germany</option>
-                </select>
-                <button class="yes" type="submit" id="cellar_search">Search the Cellar</button>
-                <button class="no" type="submit" id="cellar_reset">Reset Search</button>
-            </form>
+            <div id="search-container">
+
+                <form id="search-beers" action="" method="get">
+                    <label for="beer_name">Beer Name: </label>
+                    <input type="text" name="beer_name" id="beer_name" placeholder="Beer Name Here" />
+                    <label for="beer_type">Select a Style of Beer:</label>
+                    <select name="beer_type" id="beer_type">
+                        <option value=""></option>
+                        <option value="Porter">Porter</option>
+                        <option value="Stout">Stout</option>
+                        <option value="Lager">Lager</option>
+                        <option value="IPA">IPA</option>
+                        <option value="Pale Ale">Pale Ale</option>
+                    </select>
+                    <label for="beer_country">Select a Country of Origin:</label>
+                    <select name="country" id="country">
+                        <option value=""></option>
+                        <option value="America">America</option>
+                        <option value="Canada">Canada</option>
+                        <option value="Mexico">Mexico</option>
+                        <option value="Japan">Japan</option>
+                        <option value="Germany">Germany</option>
+                    </select>
+                    <button class="yes" type="submit" id="cellar_search">Search the Cellar</button>
+                    <button class="no" type="submit" id="cellar_reset">Reset Search</button>
+                </form>
+            </div>
+
         </div>
 
         <div id="display_results">
