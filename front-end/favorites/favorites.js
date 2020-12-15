@@ -42,16 +42,14 @@ function addFavoriteBeer(event) {
     // Create all beer object fields
     let name = beerFormData[0].value;
     let image_url = beerFormData[1].value;
-    let category = beerFormData[2].value;
+    let style = beerFormData[2].value;
     let abv = beerFormData[3].value;
-    let type = beerFormData[4].value;
-    let brewer = beerFormData[5].value;
-    let country = beerFormData[6].value;
-    let comments = [];
+    let brewer = beerFormData[4].value;
+    let country = beerFormData[5].value;
 
     // Create the new beer object
-    let newBeer = new Beer(id, name, image_url, category,
-        abv, type, brewer, country, comments);
+    let newBeer = new Beer(id, name, image_url, style,
+        abv, brewer, country);
     // Add the new beer object to heroku backend
     pushBeerObjToBackEnd(newBeer);
 }
@@ -92,12 +90,39 @@ function editButtonCondition(beerEditBtn, listArray) {
         }
         // Create an input for each child and place it adjacently after child
         let editInput = document.createElement("input");
+        setPlaceHolderText(editInput, index);
         if (currElement.nextSibling) {
             currElement.parentNode.insertBefore(editInput, currElement.nextSibling);
         } else {
             currElement.parentNode.appendChild(editInput);
         }
     }
+}
+
+function setPlaceHolderText(inputElement, index) {
+    switch (index) {
+        case 0:
+            inputElement.placeholder = "Enter a new name";
+            break;
+        case 1:
+            inputElement.placeholder = "Choose a new image url";
+            break;
+        case 2:
+            inputElement.placeholder = "Pick a new style";
+            break;
+        case 3:
+            inputElement.placeholder = "Enter alcohol by volume";
+            break;
+        case 4:
+            inputElement.placeholder = "Who is the brewer";
+            break;
+        case 5:
+            inputElement.placeholder = "Country of origin";
+            break;
+        default:
+            inputElement.placeholder = "Enter a new value";
+    }
+
 }
 
 // Saves the current input values from editing to heroku back end
@@ -113,13 +138,12 @@ function saveButtonCondition(beerEditBtn, newBeerCard, beerId) {
     let allEditInputs = newBeerCard.getElementsByTagName("input");
     // Initialize new beer data
     let updatedBeerData = {
-        name: allEditInputs[1].value,
-        image_url: allEditInputs[2].value,
-        category: allEditInputs[3].value,
-        abv: allEditInputs[4].value,
-        type: allEditInputs[5].value,
-        brewer: allEditInputs[6].value,
-        country: allEditInputs[7].value
+        name: allEditInputs[0].value,
+        image_url: allEditInputs[1].value,
+        style: allEditInputs[2].value,
+        abv: allEditInputs[3].value,
+        brewer: allEditInputs[4].value,
+        country: allEditInputs[5].value,
     };
     // Update/put call to heroku back end
     axios.put(`${HEROKU_BACK_END_BASE_URL}/user/favorites/${beerId}`,
@@ -193,17 +217,14 @@ function randomNumberInRange(min, max) {
 // ... and so on
 // exception is comments. initialize as
 // empty array if no data is available
-function Beer(id, name, image_url, category, abv,
-    type, brewer, country, comments) {
+function Beer(id, name, image_url, style, abv, brewer, country) {
     this.id = id;
     this.name = name;
     this.image_url = image_url;
-    this.category = category;
+    this.style = style;
     this.abv = abv;
-    this.type = type;
     this.brewer = brewer;
     this.country = country;
-    this.comments = comments;
 }
 
 // Creates the entire beer card
@@ -224,7 +245,7 @@ function createBeerCard(beerObj) {
     // Create, set value and append to parent the beer name
     let beerNameElement = document.createElement("h3");
     beerNameElement.setAttribute("id", "nameEl");
-    beerNameElement.textContent = beerObj.name;
+    beerNameElement.textContent = beerObj.name.toUpperCase();
     newBeerCard.appendChild(beerNameElement);
 
     // Create, set value and append to parent the image url
@@ -233,29 +254,24 @@ function createBeerCard(beerObj) {
     beerImageElement.src = beerObj.image_url;
     newBeerCard.appendChild(beerImageElement);
 
-    // Create, set value and append to parent the beer category
-    let beerCategoryElement = document.createElement("p");
-    beerCategoryElement.innerHTML = beerObj.category;
-    newBeerCard.appendChild(beerCategoryElement);
+    // Create, set value and append to parent the beer style
+    let beerStyleElement = document.createElement("p");
+    beerStyleElement.innerHTML = "Style: " + beerObj.style;
+    newBeerCard.appendChild(beerStyleElement);
 
     // Create, set value and append to parent the beer abv
     let beerAbvElement = document.createElement("p");
-    beerAbvElement.innerHTML = beerObj.abv;
+    beerAbvElement.innerHTML = "ABV: " + beerObj.abv;
     newBeerCard.appendChild(beerAbvElement);
-
-    // Create, set value and append to parent the beer type
-    let beerTypeElement = document.createElement("p");
-    beerTypeElement.innerHTML = beerObj.type;
-    newBeerCard.appendChild(beerTypeElement);
 
     // Create, set value and append to parent the beer brewer
     let beerBrewerElement = document.createElement("p");
-    beerBrewerElement.innerHTML = beerObj.brewer;
+    beerBrewerElement.innerHTML = "Brewer: " + beerObj.brewer;
     newBeerCard.appendChild(beerBrewerElement);
 
     // Create, set value and append to parent the beer country
     let beerCountryElement = document.createElement("p");
-    beerCountryElement.innerHTML = beerObj.country;
+    beerCountryElement.innerHTML = "Country: " + beerObj.country;
     newBeerCard.appendChild(beerCountryElement);
 
     // Create a button to edit
@@ -278,12 +294,6 @@ function createBeerCard(beerObj) {
         deleteBeerObjFromBackEnd(beerObj.id);
     });
     newBeerCard.appendChild(beerDeleteBtn);
-
-    // Create, set value and append to parent the beer comments
-    //TODO implement view for comments
-    let beerCommentsElement = document.createElement("div");
-    beerCommentsElement.innerHTML = "TODO - IMPLEMENT COMMENTS";
-    newBeerCard.appendChild(beerCommentsElement);
 
     // Send back the created beer card with its children
     return newBeerCard;
