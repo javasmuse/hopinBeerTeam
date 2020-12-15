@@ -23,7 +23,7 @@ function loadContainer(container) {
             });
         })
         .catch(function (error) {
-            alert(error);
+            alert("Sorry, we could not find your favorites. Try again later.");
             console.log(error);
         });
 }
@@ -69,7 +69,7 @@ function pushBeerObjToBackEnd(beerObj) {
             }
         })
         .catch(function (error) {
-            alert(error);
+            alert("Sorry, we could not add your beer. Try again later.");
             console.log(error);
         });
 }
@@ -129,10 +129,10 @@ function saveButtonCondition(beerEditBtn, newBeerCard, listArray) {
         .then(function (response) {
             // Reload container when complete and alert response to user
             loadContainer(favoriteBeerContainer);
-            alert(response.data);
+            alert("We updated your changes!");
         })
         .catch(function (error) {
-            alert(error);
+            alert("Sorry, we could not edit your beer. Try again later.");
             console.log(error);
         });
 }
@@ -170,10 +170,10 @@ function deleteBeerObjFromBackEnd(beerId) {
         .then(function (response) {
             // TODO CHECK FOR SUCCESS MSG - IMPLEMENT/VERIFY IN BACKEND
             loadContainer(favoriteBeerContainer);
-            alert(response.data);
+            alert("We deleted that beer for you!");
         })
         .catch(function (error) {
-            alert(error);
+            alert("Sorry, we could not delete your beer. Try again later.");
             console.log(error);
         });
 
@@ -299,7 +299,7 @@ function createBeerCard(beerObj) {
 
 
 const ofAge = localStorage.getItem("ofAge")
-if(ofAge !== undefined && ofAge === "yes") {
+if (ofAge !== undefined && ofAge === "yes") {
     document.getElementById("ageVerBg").style.display = "none";
 } else {
     //flash verification
@@ -312,9 +312,9 @@ function overAge() {
     const ageVerBg = document.getElementById("ageVerBg");
     ageVerBg.remove();
 
-// store that user is above age
-// have to be global enough, check if exists
-// check if yes
+    // store that user is above age
+    // have to be global enough, check if exists
+    // check if yes
     localStorage.setItem("ofAge", "yes");
 
 
@@ -350,3 +350,16 @@ function underAge() {
     // Append container to body;
     page.appendChild(container);
 };
+//TODO ids
+//TODO Center the header
+//TODO Change edit response
+//TODO Delete response back to user
+//TODO Placeholder text for edit input fields
+//TODO Response name 127.0.0.1:55000 (alert)
+//TODO Check for duplicate 
+
+
+//TODO Normalize the data being sent to back end
+//TODO Change object "type" field to style when displaying
+//TODO Remove comments for now
+//TODO Add ratings
