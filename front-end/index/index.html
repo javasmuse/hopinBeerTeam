@@ -19,7 +19,7 @@
         <h1>Age Verification</h1>
       </span>
       <span>
-        <p class="ageVerBody">Please indicate wether you are of legal drinking age in your country.</p>
+        <p class="ageVerBody">Please indicate whether you are of legal drinking age in your country.</p>
       </span>
       <button class="yes" onclick="overAge()">Yes</button>
       <button class="no" onclick="underAge()">No</button>
@@ -34,34 +34,47 @@
   </div>
 
   <div>
-    <p class="contentMsg">Here you can access all of your favorites along with some recommended beers.</p>
+    <h4 class="contentMsg">Here you can access all of your favorites along with some recommended beers.</h4>
   </div>
   <div class="content_container">
     <div class="rcmndBeers content_panel">
-      <a href="../search/search.html"'>
-      <button class="pageBtn"id="getAllBeers" class="yes">Get All Beers</button>
-      </a>
+      <div class="topContainer">
+        
+        <h4>Recommended Beers</h4>
+
+        <a href="../search/search.html"'>
+          <button class="pageBtn"id="getAllBeers" class="yes">Search for beers!</button>
+          </a>
+
+      </div>
       <div class="wrap_cards" id="cards">
 
       </div>
     </div>
     
     <div class="favBeers content_panel" >
-      <a href="../favorites/favorites.html"'>
-        <button class="viewFaves pageBtn" id="viewFavorites">View/Edit</button>
-      </a>
+      <div class="topContainer">
+        
+        <h4>View Favorites</h4>
+
+        <a href="../favorites/favorites.html"'>
+          <button class="viewFaves pageBtn" id="viewFavorites">View/Edit</button>
+        </a>
+
+      </div>
       <div class="wrap_cards" id="favorites_Container"> No favorites to be Displayed :(</div>
 
     </div>
-  </div>
 
-  <div>
     <footer class="footerAll">
-
+  
       <p>Project Made By Team 5 - HOPin. Copyright 2020</p>
 
     </footer>
   </div>
+
+      
+
 
 
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
