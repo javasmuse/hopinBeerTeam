@@ -246,6 +246,7 @@ function createBeerCard(beerObj) {
     let beerNameElement = document.createElement("h3");
     beerNameElement.setAttribute("id", "nameEl");
     beerNameElement.textContent = beerObj.name.toUpperCase();
+    beerNameElement.innerHTML = `name: ${beerObj.name}`;
     newBeerCard.appendChild(beerNameElement);
 
     // Create, set value and append to parent the image url
@@ -254,24 +255,33 @@ function createBeerCard(beerObj) {
     beerImageElement.src = beerObj.image_url;
     newBeerCard.appendChild(beerImageElement);
 
-    // Create, set value and append to parent the beer style
-    let beerStyleElement = document.createElement("p");
-    beerStyleElement.innerHTML = "Style: " + beerObj.style;
-    newBeerCard.appendChild(beerStyleElement);
+
+    // Create, set value and append to parent the beer category
+    let beerCategoryElement = document.createElement("p");
+    beerCategoryElement.innerHTML = `cat: ${beerObj.category}`;
+    newBeerCard.appendChild(beerCategoryElement);
 
     // Create, set value and append to parent the beer abv
     let beerAbvElement = document.createElement("p");
-    beerAbvElement.innerHTML = "ABV: " + beerObj.abv;
+    beerAbvElement.innerHTML = `abv: ${beerObj.abv}%`;
     newBeerCard.appendChild(beerAbvElement);
+
+    // Create, set value and append to parent the beer type
+    let beerTypeElement = document.createElement("p");
+    beerTypeElement.innerHTML = `style: ${beerObj.type}`;
+    newBeerCard.appendChild(beerTypeElement);
 
     // Create, set value and append to parent the beer brewer
     let beerBrewerElement = document.createElement("p");
-    beerBrewerElement.innerHTML = "Brewer: " + beerObj.brewer;
+    beerBrewerElement.innerHTML = `brewer: ${beerObj.brewer}`;
+  
     newBeerCard.appendChild(beerBrewerElement);
 
     // Create, set value and append to parent the beer country
     let beerCountryElement = document.createElement("p");
-    beerCountryElement.innerHTML = "Country: " + beerObj.country;
+
+    beerCountryElement.innerHTML = `origin: ${beerObj.country}`;
+  
     newBeerCard.appendChild(beerCountryElement);
 
     // Create a button to edit
@@ -294,6 +304,7 @@ function createBeerCard(beerObj) {
         deleteBeerObjFromBackEnd(beerObj.id);
     });
     newBeerCard.appendChild(beerDeleteBtn);
+
 
     // Send back the created beer card with its children
     return newBeerCard;

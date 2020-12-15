@@ -43,12 +43,12 @@
 
             <div id="allBeers">
 
-                <h4>Click Here to See All Of Our Beers: </h4>
+                <h3>Click Here to See All Of Our Beers: </h3>
                 <button class="yes" type="submit" id="getAll">Show All Beers</button>
             </div>
 
             <div id="search-container">
-
+                <h3 id="searchFilter">Filter your search by name - style - country or style and country</h3>
                 <form id="search-beers" action="" method="get">
                     <label for="beer_name">Beer Name: </label>
                     <input type="text" name="beer_name" id="beer_name" placeholder="Beer Name Here" />
@@ -70,8 +70,10 @@
                         <option value="Japan">Japan</option>
                         <option value="Germany">Germany</option>
                     </select>
-                    <button class="yes" type="submit" id="cellar_search">Search the Cellar</button>
-                    <button class="no" type="submit" id="cellar_reset">Reset Search</button>
+                    <div id="buttons">
+                        <button class="yes" type="submit" id="cellar_search">Search the Cellar</button>
+                        <button class="no" type="submit" id="cellar_reset">Reset Search</button>
+                    </div>
                 </form>
             </div>
 
