@@ -12,37 +12,40 @@
 </head>
 
 <body class="main_body">
-    <div class="topnav">
-        <img class="navLogo" src="../resources/hopin.png" alt="">
-        <a href="/front-end/index/index.html">Home</a>
-        <a href="../about/about.html">About Us</a>
-        <a href="../favorites/favorites.html">Favorites</a>
-        <a href="../search/search.html">Search</a>
+    <div class="background_image">
+        <div class="topnav">
+            <img class="navLogo" src="../resources/hopin.png" alt="">
+            <a href="/front-end/index/index.html">Home</a>
+            <a href="../about/about.html">About Us</a>
+            <a href="../favorites/favorites.html">Favorites</a>
+            <a href="../search/search.html">Search</a>
+        </div>
+
+        <div class="contentMsg">
+            <h2>Your Favorites</h2>
+            <p>Add a new beer, or edit your collection!</p>
+        </div>
+
+        <form id="add-favorite-beer-form">
+            <label><input required=true placeholder="beer name" type="text"></label>
+            <label><input placeholder="image url" type="text"></label>
+            <label><input placeholder="category" type="text"></label>
+            <label><input placeholder="abv" type="text"></label>
+            <label><input placeholder="type ie. Lager, Stout" type="text"></label>
+            <label><input placeholder="brewer" type="text"></label>
+            <label><input placeholder="country" type="text"></label>
+
+            <button type="submit">Add Beer</button>
+        </form>
+
+
+        <section id="favorites-container">
+
+        </section>
+
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="favorites.js"></script>
     </div>
-
-    <div class="contentMsg">
-        <h3>Check out your favorites</h3>
-    </div>
-
-    <form id="add-favorite-beer-form">
-        <label><input required=true placeholder="beer name" type="text"></label>
-        <label><input placeholder="image url" type="text"></label>
-        <label><input placeholder="category" type="text"></label>
-        <label><input placeholder="abv" type="text"></label>
-        <label><input placeholder="type ie. Lager, Stout" type="text"></label>
-        <label><input placeholder="brewer" type="text"></label>
-        <label><input placeholder="country" type="text"></label>
-
-        <button type="submit">Add Beer</button>
-    </form>
-
-
-    <section id="favorites-container">
-
-    </section>
-
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="favorites.js"></script>
 </body>
 
 </html>

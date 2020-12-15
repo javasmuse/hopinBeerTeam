@@ -2,15 +2,13 @@
 body {
     margin: 0px;
    background-color: rgb(37, 37, 37);
-   color: white;
-   font-family: 'Khand';
+   background: url("https://images3.alphacoders.com/276/276637.jpg") no-repeat center right/cover;
+   height: 100vh;
 
-    background-image: url("https://images3.alphacoders.com/276/276637.jpg");
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
+   color: white;
+   font-family: 'Khand'; 
 }
+
 /* NAV BAR WITH LOGO */
 .navLogo {
     width: 4rem;
