@@ -9,7 +9,7 @@
     "cors": "^2.8.5"
   },
   "scripts": {
-    "start": "node /hopinBeerTeam/front-end/index/index.js"
+    "start": "node /hopinBeerTeam/front-end/index/scripts.js"
   },
   "repository": {
     "type": "git",
