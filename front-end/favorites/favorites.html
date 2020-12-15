@@ -12,9 +12,21 @@
 </head>
 
 <body class="main_body">
+    <div class="ageVerBg" id="ageVerBg">
+        <div class="age_Verification" id="ageVer">
+          <span class="ageVerTitle">
+            <h1>Age Verification</h1>
+          </span>
+          <span>
+            <p class="ageVerBody">Please indicate wether you are of legal drinking age in your country.</p>
+          </span>
+          <button class="yes" onclick="overAge()">Yes</button>
+          <button class="no" onclick="underAge()">No</button>
+        </div>
+      </div>
     <div class="topnav">
         <img class="navLogo" src="../resources/hopin.png" alt="">
-        <a href="index.html">Home</a>
+        <a href="../index/index.html">Home</a>
         <a href="../about/about.html">About Us</a>
         <a href="../favorites/favorites.html">Favorites</a>
         <a href="../search/search.html">Search</a>
@@ -40,7 +52,11 @@
     <section id="favorites-container">
 
     </section>
+    <footer class="footerAll">
 
+        <p>Project Made By Team 5 - HOPin. Copyright 2020</p>
+    
+      </footer>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="favorites.js"></script>
 </body>
