@@ -10,7 +10,7 @@
     "express": "^4.17.1"
   },
   "scripts": {
-    "start": "node /hopinBeerTeam/front-end/index/scripts.js"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
