@@ -219,7 +219,7 @@ function getBeers(event) {
         axios.post(`${HEROKU_BACK_END_BASE_URL}/user/favorites`, beerObj)
             .then(function (response) {
                 if (response.data === "success") {
-                    loadContainer(document.getElementById("cards"));
+                    // loadContainer(document.getElementById("cards"));
                     alert("We added your new favorite beer!");
                 }
             })
