@@ -1,7 +1,7 @@
 //ADDED VERIFICATION
 
 const ofAge = localStorage.getItem("ofAge")
-if(ofAge !== undefined && ofAge === "yes") {
+if (ofAge !== undefined && ofAge === "yes") {
     document.getElementById("ageVerBg").style.display = "none";
 } else {
     //flash verification
@@ -14,9 +14,9 @@ function overAge() {
     const ageVerBg = document.getElementById("ageVerBg");
     ageVerBg.remove();
 
-// store that user is above age
-// have to be global enough, check if exists
-// check if yes
+    // store that user is above age
+    // have to be global enough, check if exists
+    // check if yes
     localStorage.setItem("ofAge", "yes");
 
 
@@ -268,11 +268,3 @@ function getBeers(event) {
         document.getElementById("search-beers").reset();
     }
 }
-
-
-
-
-
-
-
-
