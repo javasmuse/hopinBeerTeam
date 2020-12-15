@@ -8,7 +8,7 @@
 
 
 ## Introduction
-![HOPin](https://github.com/javasmuse/hopinBeerTeam/blob/main/front-end/resources/AboutUs.png)
+![HOPin](https://github.com/javasmuse/hopinBeerTeam/blob/main/front-end/resources/AboutUs.png =250x)
 # HOPin - Amazon SDE Appenticeship Project
 Full stack development utilizing cirriculum learned over the past 4 weeks. HOPin is an application that our team developed with the beer connoisseur in mind. Basics of our program can be found via our about us page {link to about us}. The team really came together using resources varying from ones we already knew to ones recently learned.
 
