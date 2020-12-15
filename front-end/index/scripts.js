@@ -1,23 +1,9 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const cors = require("cors");
-const server = express();
-server.use(bodyParser.json());
-server.use(cors());
-
-server.listen(process.env.PORT || 3000);
-//route to get all user beer favorites
-server.get("/", (req, res) => {
-    res.send(front - end / index / index.html);
-});
-
 const ofAge = localStorage.getItem("ofAge")
 if (ofAge !== undefined && ofAge === "yes") {
     document.getElementById("ageVerBg").style.display = "none";
 } else {
     //flash verification
 }
-
 
 function overAge() {
     const container = document.getElementById("ageVer");
