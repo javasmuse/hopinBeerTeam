@@ -217,19 +217,21 @@ function createBeerCard(beerObj) {
     let newBeerCard = document.createElement("div");
     newBeerCard.className = "beer-card";
     newBeerCard.style.backgroundColor = "rgba(22,22,22,0.9)";
-    // TODO Implement without showing id
-    let beerIdElement = document.createElement("p");
-    beerIdElement.class = "beer-id";
-    beerIdElement.innerHTML = beerObj.id;
-    newBeerCard.appendChild(beerIdElement);
+    // TODO Implement without showing id -- deleted by commenting out
+    // let beerIdElement = document.createElement("p");
+    // beerIdElement.class = "beer-id";
+    // beerIdElement.innerHTML = beerObj.id;
+    // newBeerCard.appendChild(beerIdElement);
 
     // Create, set value and append to parent the beer name
     let beerNameElement = document.createElement("h3");
+    beerNameElement.setAttribute("id", "nameEl");
     beerNameElement.textContent = beerObj.name;
     newBeerCard.appendChild(beerNameElement);
 
     // Create, set value and append to parent the image url
     let beerImageElement = document.createElement("img");
+    beerImageElement.setAttribute("id", "imgEl");
     beerImageElement.src = beerObj.image_url;
     newBeerCard.appendChild(beerImageElement);
 
