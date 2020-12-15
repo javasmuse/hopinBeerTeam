@@ -262,6 +262,7 @@ function createBeerCard(beerObj) {
     let beerEditBtn = document.createElement("button");
     beerEditBtn.innerHTML = "Edit";
     beerEditBtn.className = "yes";
+    beerEditBtn.setAttribute("id", "buttonOne");
     beerEditBtn.addEventListener("click", () => {
         updateBeerFavoritesData(beerEditBtn, newBeerCard);
     });
@@ -271,6 +272,8 @@ function createBeerCard(beerObj) {
     let beerDeleteBtn = document.createElement("button");
     beerDeleteBtn.innerHTML = "Delete";
     beerDeleteBtn.className = "yes";
+    beerDeleteBtn.setAttribute("id", "buttonTwo");
+
     beerDeleteBtn.addEventListener("click", () => {
         deleteBeerObjFromBackEnd(beerObj.id);
     });
