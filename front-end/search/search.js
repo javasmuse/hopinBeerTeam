@@ -18,8 +18,6 @@ function overAge() {
     // have to be global enough, check if exists
     // check if yes
     localStorage.setItem("ofAge", "yes");
-
-
 };
 
 function underAge() {
@@ -61,15 +59,8 @@ function underAge() {
 // document.getElementById("getAll").addEventListener("click", getAllBeers);
 const HEROKU_BACK_END_BASE_URL = "https://hopin-back-end.herokuapp.com";
 
-function getAllBeers(event) {
-    event.preventDefault(event);
 
-    axios.get("http://ontariobeerapi.ca/beers").then((res) => {
-        let beers = res.data;
-        console.log(beers);
-    });
-}
-
+// filtered beer search
 document.getElementById("cellar_search").addEventListener("click", getBeers);
 
 function getBeers(event) {
@@ -86,8 +77,9 @@ function getBeers(event) {
 
         // if every field is blank send user a response to enter at least one field
         if (bName === "" && bType === "" && bCountry === "") {
-            let noticeEmpty = "Please enter at least one field";
-            document.getElementById("addInfoToYourForm").innerHTML = noticeEmpty;
+            // let noticeEmpty = "Please enter at least one field";
+            // document.getElementById("addInfoToYourForm").innerHTML = noticeEmpty;
+            window.alert("Please enter at least one field to search.");
 
             // if only the name field is entered return all beers with that name
         } else if (bName !== "" && bType === "" && bCountry === "") {
@@ -115,6 +107,21 @@ function getBeers(event) {
         }
     });
 
+    // get all beers search
+    document.getElementById("getAll").addEventListener("click", getAllBeers);
+
+    function getAllBeers(event) {
+        event.preventDefault(event);
+
+        axios.get("http://ontariobeerapi.ca/beers").then((res) => {
+            let beers = res.data;
+            displayCards(beers);
+            console.log(beers);
+        });
+    }
+
+
+    // display search results
     function displayCards(beerRequested) {
         // loop through the beer array sent in and make cards for each beer
         for (let i = 0; i < beerRequested.length; i++) {
@@ -191,18 +198,6 @@ function getBeers(event) {
             let detailsDiv = document.createElement("div");
             detailsDiv.setAttribute("id", "details");
 
-            // let favoritesBtn = document.createElement("div");
-            // favoritesBtn.setAttribute("class", "favoritesBtn");
-            // favoritesBtn.setAttribute("type", "button");
-            // favoritesBtn.textContent = "Add to Favorites";
-            // cardBack.appendChild(favoritesBtn);
-            // favoritesBtn.onclick = makeFavorite();
-
-            // function makeFavorite() {
-            //     console.log("on click");
-
-            // }
-
             let postbtn = document.createElement("BUTTON");
 
             postbtn.innerHTML = "Add to Favorites";
@@ -215,6 +210,7 @@ function getBeers(event) {
         }
     }
 
+    // POST A BEER TO BACK END FAVORITES LIST
     function pushBeerObjToBackEnd(beerObj) {
         axios.post(`${HEROKU_BACK_END_BASE_URL}/user/favorites`, beerObj)
             .then(function (response) {
@@ -247,20 +243,21 @@ function getBeers(event) {
             });
     }
 
-    function randomTenBeers() {
-        axios.get("http://ontariobeerapi.ca/beers").then((res) => {
-            let beers = res.data;
-            let beerArray = [];
+    // MOVED TO INDEX JS
+    // function randomTenBeers() {
+    //     axios.get("http://ontariobeerapi.ca/beers").then((res) => {
+    //         let beers = res.data;
+    //         let beerArray = [];
 
-            for (let i = 0; i < 10; i++) {
-                let num = Math.floor(Math.random() * beers.length);
-                beerArray.push(beers[num]);
-            }
-            // displayCards(beerArray);
-        });
-    }
+    //         for (let i = 0; i < 10; i++) {
+    //             let num = Math.floor(Math.random() * beers.length);
+    //             beerArray.push(beers[num]);
+    //         }
+    //         // displayCards(beerArray);
+    //     });
+    // }
 
-    randomTenBeers();
+    // randomTenBeers();
 
     document.getElementById("cellar_reset").addEventListener("click", reset);
 
