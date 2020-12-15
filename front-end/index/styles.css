@@ -85,7 +85,10 @@
 }
 
 
-
+.aboutUsImg{
+    width: 25%;
+    height: auto;
+}
 
 /* copy pastad */
 .topnav {
@@ -117,13 +120,13 @@
 }
 
 .aboutBanner {
-    background-color: #222;
-    opacity: 0.9;
+    background-color: rgba(22,22,22,0.9);
     text-align: center;
     margin: 2rem;
     font-family: 'Khand';
-    padding: 10rem;
-    height: 50vh;
+    padding: 3rem;
+    height: auto;
+    border: #267729 solid 2px;
 }
 
 .footerAll {

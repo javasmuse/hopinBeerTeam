@@ -23,7 +23,7 @@ function loadContainer(container) {
             });
         })
         .catch(function (error) {
-            alert(error);
+            alert("Sorry, we could not find your favorites. Try again later.");
             console.log(error);
         });
 }
@@ -69,7 +69,7 @@ function pushBeerObjToBackEnd(beerObj) {
             }
         })
         .catch(function (error) {
-            alert(error);
+            alert("Sorry, we could not add your beer. Try again later.");
             console.log(error);
         });
 }
@@ -129,10 +129,10 @@ function saveButtonCondition(beerEditBtn, newBeerCard, listArray) {
         .then(function (response) {
             // Reload container when complete and alert response to user
             loadContainer(favoriteBeerContainer);
-            alert(response.data);
+            alert("We updated your changes!");
         })
         .catch(function (error) {
-            alert(error);
+            alert("Sorry, we could not edit your beer. Try again later.");
             console.log(error);
         });
 }
@@ -170,10 +170,10 @@ function deleteBeerObjFromBackEnd(beerId) {
         .then(function (response) {
             // TODO CHECK FOR SUCCESS MSG - IMPLEMENT/VERIFY IN BACKEND
             loadContainer(favoriteBeerContainer);
-            alert(response.data);
+            alert("We deleted that beer for you!");
         })
         .catch(function (error) {
-            alert(error);
+            alert("Sorry, we could not delete your beer. Try again later.");
             console.log(error);
         });
 
@@ -216,6 +216,7 @@ function createBeerCard(beerObj) {
     // Create a container element to hold a new beer card
     let newBeerCard = document.createElement("div");
     newBeerCard.className = "beer-card";
+    newBeerCard.style.backgroundColor = "rgba(22,22,22,0.9)";
     // TODO Implement without showing id
     let beerIdElement = document.createElement("p");
     beerIdElement.class = "beer-id";
@@ -287,3 +288,81 @@ function createBeerCard(beerObj) {
     // Send back the created beer card with its children
     return newBeerCard;
 }
+
+
+
+
+
+
+
+
+
+//AGE VERIFICATION
+
+
+
+const ofAge = localStorage.getItem("ofAge")
+if (ofAge !== undefined && ofAge === "yes") {
+    document.getElementById("ageVerBg").style.display = "none";
+} else {
+    //flash verification
+}
+
+
+function overAge() {
+    const container = document.getElementById("ageVer");
+    container.remove();
+    const ageVerBg = document.getElementById("ageVerBg");
+    ageVerBg.remove();
+
+    // store that user is above age
+    // have to be global enough, check if exists
+    // check if yes
+    localStorage.setItem("ofAge", "yes");
+
+
+};
+
+function underAge() {
+    const page = document.getElementsByTagName("body")[0];
+    // Create container for underage;
+    const container = document.createElement("div");
+    container.classList.add("age_Verification");
+    // Creates title and everything in it
+    const titleSpan = document.createElement("span");
+    titleSpan.classList.add("ageVerTitle");
+    let title = document.createElement("h1");
+    title.innerHTML = "Sorry!";
+    titleSpan.appendChild(title);
+    container.appendChild(titleSpan);
+    // Create sorry message
+    const bodySpan = document.createElement("span");
+    bodySpan.classList.add("ageVerBody");
+    let body = document.createElement("p");
+    body.innerHTML = "Our site is for people of age only. Don't forget us though!";
+    bodySpan.appendChild(body);
+    container.appendChild(bodySpan);
+    const exitButton = document.createElement("button");
+    exitButton.classList.add("yes");
+    exitButton.innerHTML = "Exit";
+    exitButton.addEventListener("click", function (event) {
+        window.open("https://parents.caprisun.com/");
+        window.close();
+    });
+    container.appendChild(exitButton);
+    // Append container to body;
+    page.appendChild(container);
+};
+//TODO ids
+//TODO Center the header
+//TODO Change edit response
+//TODO Delete response back to user
+//TODO Placeholder text for edit input fields
+//TODO Response name 127.0.0.1:55000 (alert)
+//TODO Check for duplicate 
+
+
+//TODO Normalize the data being sent to back end
+//TODO Change object "type" field to style when displaying
+//TODO Remove comments for now
+//TODO Add ratings

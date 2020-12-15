@@ -2,16 +2,17 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href='https://fonts.googleapis.com/css?family=Khand' rel='stylesheet'>
-    <link rel="stylesheet" href="favorites.css">
-    <link rel="stylesheet" href="../index/styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href='https://fonts.googleapis.com/css?family=Khand' rel='stylesheet'>
+  <link rel="stylesheet" href="favorites.css">
+  <link rel="stylesheet" href="../index/styles.css">
 
 </head>
 
 <body class="main_body">
+<<<<<<< HEAD
     <div class="background_image">
         <div class="topnav">
             <img class="navLogo" src="../resources/hopin.png" alt="">
@@ -46,6 +47,55 @@
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <script src="favorites.js"></script>
     </div>
+=======
+  <div class="ageVerBg" id="ageVerBg">
+    <div class="age_Verification" id="ageVer">
+      <span class="ageVerTitle">
+        <h1>Age Verification</h1>
+      </span>
+      <span>
+        <p class="ageVerBody">Please indicate wether you are of legal drinking age in your country.</p>
+      </span>
+      <button class="yes" onclick="overAge()">Yes</button>
+      <button class="no" onclick="underAge()">No</button>
+    </div>
+  </div>
+  <div class="topnav">
+    <img class="navLogo" src="../resources/hopin.png" alt="">
+    <a href="../index/index.html">Home</a>
+    <a href="../about/about.html">About Us</a>
+    <a href="../favorites/favorites.html">Favorites</a>
+    <a href="../search/search.html">Search</a>
+  </div>
+
+  <div class="contentMsg">
+    <h3>Add, Edit, View or Delete your Favorites!</h3>
+  </div>
+
+  <form id="add-favorite-beer-form">
+    <label><input required=true placeholder="beer name" type="text"></label>
+    <label><input placeholder="image url" type="text"></label>
+    <label><input placeholder="category" type="text"></label>
+    <label><input placeholder="abv" type="text"></label>
+    <label><input placeholder="type ie. Lager, Stout" type="text"></label>
+    <label><input placeholder="brewer" type="text"></label>
+    <label><input placeholder="country" type="text"></label>
+
+    <button type="submit">Add Beer</button>
+  </form>
+
+
+  <section id="favorites-container">
+
+  </section>
+  <footer class="footerAll">
+
+    <p>Project Made By Team 5 - HOPin. Copyright 2020</p>
+
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="favorites.js"></script>
+>>>>>>> deaa2800e6aea4da838396456f5436eeb3e494f6
 </body>
 
 </html>
