@@ -170,7 +170,6 @@ function loadContainer(container) {
             // build beer card and\
             let favorites = response.data;
                 displayFavCards(favorites);
-                console.log(favorites);
         })
         .catch(function (error) {
             alert(error);

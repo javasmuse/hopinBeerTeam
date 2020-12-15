@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Goldman">
     <link rel="stylesheet" href="../index/styles.css">
     <link rel="stylesheet" href="search.css">
+    <link rel="shortcut icon" href="../resources/beer.ico" type="image/icon">
     <title>Search Our Beers</title>
 </head>
 
@@ -34,39 +35,46 @@
 
     <div id="main_container">
 
-        <h1>Search Our Beers</h1>
-        <div id="allBeer">
+        <div id="heading">
+            <h1>Search Our Beers</h1>
+        </div>
+
+        <div id="searchBox">
+
             <div id="allBeers">
+
                 <h4>Click Here to See All Of Our Beers: </h4>
                 <button class="yes" type="submit" id="getAll">Show All Beers</button>
             </div>
-        </div>
 
-        <div id="search-container">
-            <form id="search-beers" action="" method="get">
-                <label for="beer_name">Beer Name: </label>
-                <input type="text" name="beer_name" id="beer_name" placeholder="Beer Name Here" />
-                <label for="beer_type">Select a Style of Beer:</label>
-                <select name="beer_type" id="beer_type">
-                    <option value=""></option>
-                    <option value="Porter">Porter</option>
-                    <option value="Stout">Stout</option>
-                    <option value="Lager">Lager</option>
-                    <option value="IPA">IPA</option>
-                    <option value="Pale Ale">Pale Ale</option>
-                </select>
-                <label for="beer_country">Select a Country of Origin:</label>
-                <select name="country" id="country">
-                    <option value=""></option>
-                    <option value="America">America</option>
-                    <option value="Canada">Canada</option>
-                    <option value="Mexico">Mexico</option>
-                    <option value="Japan">Japan</option>
-                    <option value="Germany">Germany</option>
-                </select>
-                <button class="yes" type="submit" id="cellar_search">Search the Cellar</button>
-                <button class="no" type="submit" id="cellar_reset">Reset Search</button>
-            </form>
+            <div id="search-container">
+
+                <form id="search-beers" action="" method="get">
+                    <label for="beer_name">Beer Name: </label>
+                    <input type="text" name="beer_name" id="beer_name" placeholder="Beer Name Here" />
+                    <label for="beer_type">Select a Style of Beer:</label>
+                    <select name="beer_type" id="beer_type">
+                        <option value=""></option>
+                        <option value="Porter">Porter</option>
+                        <option value="Stout">Stout</option>
+                        <option value="Lager">Lager</option>
+                        <option value="IPA">IPA</option>
+                        <option value="Pale Ale">Pale Ale</option>
+                    </select>
+                    <label for="beer_country">Select a Country of Origin:</label>
+                    <select name="country" id="country">
+                        <option value=""></option>
+                        <option value="America">America</option>
+                        <option value="Canada">Canada</option>
+                        <option value="Mexico">Mexico</option>
+                        <option value="Japan">Japan</option>
+                        <option value="Germany">Germany</option>
+                    </select>
+                    <button class="yes" type="submit" id="cellar_search">Search the Cellar</button>
+                    <button class="no" type="submit" id="cellar_reset">Reset Search</button>
+                </form>
+            </div>
+
         </div>
 
         <div id="display_results">
