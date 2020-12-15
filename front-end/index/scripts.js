@@ -1,5 +1,18 @@
+const express = require("express");
+const bodyParser = require("body-parser");
+const cors = require("cors");
+const server = express();
+server.use(bodyParser.json());
+server.use(cors());
+
+server.listen(process.env.PORT || 3000);
+//route to get all user beer favorites
+server.get("/", (req, res) => {
+    res.send(front - end / index / index.html);
+});
+
 const ofAge = localStorage.getItem("ofAge")
-if(ofAge !== undefined && ofAge === "yes") {
+if (ofAge !== undefined && ofAge === "yes") {
     document.getElementById("ageVerBg").style.display = "none";
 } else {
     //flash verification
@@ -12,9 +25,9 @@ function overAge() {
     const ageVerBg = document.getElementById("ageVerBg");
     ageVerBg.remove();
 
-// store that user is above age
-// have to be global enough, check if exists
-// check if yes
+    // store that user is above age
+    // have to be global enough, check if exists
+    // check if yes
     localStorage.setItem("ofAge", "yes");
 
 
@@ -111,33 +124,33 @@ function displayCards(beerRequested) {
 
 
         let insertName = document.createElement("p");
-            insertName.setAttribute("id", "name");
-            insertName.innerHTML = `Name: ${beerRequested[i].name}`;
-            cardBack.appendChild(insertName);
+        insertName.setAttribute("id", "name");
+        insertName.innerHTML = `Name: ${beerRequested[i].name}`;
+        cardBack.appendChild(insertName);
 
 
-            let insertStyle = document.createElement("p");
-            insertStyle.setAttribute("id", "style");
-            insertStyle.innerHTML = `Style: ${beerRequested[i].style}`;
-            cardBack.appendChild(insertStyle);
+        let insertStyle = document.createElement("p");
+        insertStyle.setAttribute("id", "style");
+        insertStyle.innerHTML = `Style: ${beerRequested[i].style}`;
+        cardBack.appendChild(insertStyle);
 
 
-            let insertABV = document.createElement("p");
-            insertABV.setAttribute("id", "abv");
-            insertABV.innerHTML = `ABV:  ${beerRequested[i].abv}%`;
-            cardBack.appendChild(insertABV);
+        let insertABV = document.createElement("p");
+        insertABV.setAttribute("id", "abv");
+        insertABV.innerHTML = `ABV:  ${beerRequested[i].abv}%`;
+        cardBack.appendChild(insertABV);
 
 
-            let insertPlace = document.createElement("p");
-            insertPlace.setAttribute("id", "place");
-            insertPlace.innerHTML = `Country: ${beerRequested[i].country}`;
-            cardBack.appendChild(insertPlace);
+        let insertPlace = document.createElement("p");
+        insertPlace.setAttribute("id", "place");
+        insertPlace.innerHTML = `Country: ${beerRequested[i].country}`;
+        cardBack.appendChild(insertPlace);
 
 
-            let insertBrewer = document.createElement("p");
-            insertBrewer.setAttribute("id", "brewer");
-            insertBrewer.innerHTML = `Brewer: ${beerRequested[i].brewer}`;
-            cardBack.appendChild(insertBrewer);
+        let insertBrewer = document.createElement("p");
+        insertBrewer.setAttribute("id", "brewer");
+        insertBrewer.innerHTML = `Brewer: ${beerRequested[i].brewer}`;
+        cardBack.appendChild(insertBrewer);
 
     }
 
@@ -169,7 +182,7 @@ function loadContainer(container) {
             // For all favorited beer objects from heroku
             // build beer card and\
             let favorites = response.data;
-                displayFavCards(favorites);
+            displayFavCards(favorites);
         })
         .catch(function (error) {
             alert(error);
@@ -222,33 +235,33 @@ function displayFavCards(beerRequested) {
 
 
         let insertName = document.createElement("p");
-            insertName.setAttribute("id", "name");
-            insertName.innerHTML = `Name: ${beerRequested[i].name}`;
-            cardBack.appendChild(insertName);
+        insertName.setAttribute("id", "name");
+        insertName.innerHTML = `Name: ${beerRequested[i].name}`;
+        cardBack.appendChild(insertName);
 
 
-            let insertStyle = document.createElement("p");
-            insertStyle.setAttribute("id", "style");
-            insertStyle.innerHTML = `Style: ${beerRequested[i].style}`;
-            cardBack.appendChild(insertStyle);
+        let insertStyle = document.createElement("p");
+        insertStyle.setAttribute("id", "style");
+        insertStyle.innerHTML = `Style: ${beerRequested[i].style}`;
+        cardBack.appendChild(insertStyle);
 
 
-            let insertABV = document.createElement("p");
-            insertABV.setAttribute("id", "abv");
-            insertABV.innerHTML = `ABV:  ${beerRequested[i].abv}%`;
-            cardBack.appendChild(insertABV);
+        let insertABV = document.createElement("p");
+        insertABV.setAttribute("id", "abv");
+        insertABV.innerHTML = `ABV:  ${beerRequested[i].abv}%`;
+        cardBack.appendChild(insertABV);
 
 
-            let insertPlace = document.createElement("p");
-            insertPlace.setAttribute("id", "place");
-            insertPlace.innerHTML = `Country: ${beerRequested[i].country}`;
-            cardBack.appendChild(insertPlace);
+        let insertPlace = document.createElement("p");
+        insertPlace.setAttribute("id", "place");
+        insertPlace.innerHTML = `Country: ${beerRequested[i].country}`;
+        cardBack.appendChild(insertPlace);
 
 
-            let insertBrewer = document.createElement("p");
-            insertBrewer.setAttribute("id", "brewer");
-            insertBrewer.innerHTML = `Brewer: ${beerRequested[i].brewer}`;
-            cardBack.appendChild(insertBrewer);
+        let insertBrewer = document.createElement("p");
+        insertBrewer.setAttribute("id", "brewer");
+        insertBrewer.innerHTML = `Brewer: ${beerRequested[i].brewer}`;
+        cardBack.appendChild(insertBrewer);
 
     }
 
