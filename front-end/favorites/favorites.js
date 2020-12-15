@@ -106,7 +106,7 @@ function editButtonCondition(beerEditBtn, listArray) {
 // beerEditBtn -> the edit/save button object
 // newBeerCard -> the beer card specific to this save call
 // listArray -> the children of the beer card ie. name, abv etc.
-function saveButtonCondition(beerEditBtn, newBeerCard, listArray) {
+function saveButtonCondition(beerEditBtn, newBeerCard, beerId) {
     // User clicked save button
     beerEditBtn.innerHTML = "Edit";
     // Update back end data 
@@ -121,8 +121,6 @@ function saveButtonCondition(beerEditBtn, newBeerCard, listArray) {
         brewer: allEditInputs[6].value,
         country: allEditInputs[7].value
     };
-    // Retrieve beer id to update
-    let beerId = listArray[0].innerHTML;
     // Update/put call to heroku back end
     axios.put(`${HEROKU_BACK_END_BASE_URL}/user/favorites/${beerId}`,
             updatedBeerData)
@@ -144,7 +142,7 @@ function saveButtonCondition(beerEditBtn, newBeerCard, listArray) {
 // when Save is clicked.
 // beerEditBtn -> the edit button for each beer card
 // newBeerCard -> the beer card element
-function updateBeerFavoritesData(beerEditBtn, newBeerCard) {
+function updateBeerFavoritesData(beerEditBtn, newBeerCard, beerId) {
     // Create array of children elements to iterate over
     const listItems = newBeerCard.children;
     const listArray = Array.from(listItems);
@@ -157,7 +155,7 @@ function updateBeerFavoritesData(beerEditBtn, newBeerCard) {
     }
     // User clicks Save
     if (beerEditBtn.innerHTML === "Save") {
-        saveButtonCondition(beerEditBtn, newBeerCard, listArray);
+        saveButtonCondition(beerEditBtn, newBeerCard, beerId);
         return;
     }
 }
@@ -168,7 +166,7 @@ function updateBeerFavoritesData(beerEditBtn, newBeerCard) {
 function deleteBeerObjFromBackEnd(beerId) {
     axios.delete(`${HEROKU_BACK_END_BASE_URL}/user/favorites/${beerId}`)
         .then(function (response) {
-            // TODO CHECK FOR SUCCESS MSG - IMPLEMENT/VERIFY IN BACKEND
+            // TODO CHECK FOR SUCCESS MSG IMPLEMENT/VERIFY IN BACKEND
             loadContainer(favoriteBeerContainer);
             alert("We deleted that beer for you!");
         })
@@ -266,7 +264,7 @@ function createBeerCard(beerObj) {
     beerEditBtn.className = "yes";
     beerEditBtn.setAttribute("id", "buttonOne");
     beerEditBtn.addEventListener("click", () => {
-        updateBeerFavoritesData(beerEditBtn, newBeerCard);
+        updateBeerFavoritesData(beerEditBtn, newBeerCard, beerObj.id);
     });
     newBeerCard.appendChild(beerEditBtn);
 
