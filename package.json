@@ -1,0 +1,24 @@
+{
+  "name": "hopinbeerteam",
+  "version": "1.0.0",
+  "description": "- [Introduction](#introduction) - [Requirements](#requirements) - [Project Management](#project-management) - [Resources Utilized](#resources-utilized)",
+  "main": "/hopinBeerTeam/front-end/index/index.js",
+  "dependencies": {
+    "axios": "^0.21.0",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5"
+  },
+  "scripts": {
+    "start": "node /hopinBeerTeam/front-end/index/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/javasmuse/hopinBeerTeam.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/javasmuse/hopinBeerTeam/issues"
+  },
+  "homepage": "https://github.com/javasmuse/hopinBeerTeam#readme"
+}
