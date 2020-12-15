@@ -124,6 +124,9 @@ body {
 
 #cards {
     margin: 0.5rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .flip_card {
