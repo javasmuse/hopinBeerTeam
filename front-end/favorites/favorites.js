@@ -226,7 +226,7 @@ function createBeerCard(beerObj) {
     // Create, set value and append to parent the beer name
     let beerNameElement = document.createElement("h3");
     beerNameElement.setAttribute("id", "nameEl");
-    beerNameElement.textContent = beerObj.name;
+    beerNameElement.innerHTML = `name: ${beerObj.name}`;
     newBeerCard.appendChild(beerNameElement);
 
     // Create, set value and append to parent the image url
@@ -237,27 +237,27 @@ function createBeerCard(beerObj) {
 
     // Create, set value and append to parent the beer category
     let beerCategoryElement = document.createElement("p");
-    beerCategoryElement.innerHTML = beerObj.category;
+    beerCategoryElement.innerHTML = `cat: ${beerObj.category}`;
     newBeerCard.appendChild(beerCategoryElement);
 
     // Create, set value and append to parent the beer abv
     let beerAbvElement = document.createElement("p");
-    beerAbvElement.innerHTML = beerObj.abv;
+    beerAbvElement.innerHTML = `abv: ${beerObj.abv}%`;
     newBeerCard.appendChild(beerAbvElement);
 
     // Create, set value and append to parent the beer type
     let beerTypeElement = document.createElement("p");
-    beerTypeElement.innerHTML = beerObj.type;
+    beerTypeElement.innerHTML = `style: ${beerObj.type}`;
     newBeerCard.appendChild(beerTypeElement);
 
     // Create, set value and append to parent the beer brewer
     let beerBrewerElement = document.createElement("p");
-    beerBrewerElement.innerHTML = beerObj.brewer;
+    beerBrewerElement.innerHTML = `brewer: ${beerObj.brewer}`;
     newBeerCard.appendChild(beerBrewerElement);
 
     // Create, set value and append to parent the beer country
     let beerCountryElement = document.createElement("p");
-    beerCountryElement.innerHTML = beerObj.country;
+    beerCountryElement.innerHTML = `origin: ${beerObj.country}`;
     newBeerCard.appendChild(beerCountryElement);
 
     // Create a button to edit
@@ -283,9 +283,9 @@ function createBeerCard(beerObj) {
 
     // Create, set value and append to parent the beer comments
     //TODO implement view for comments
-    let beerCommentsElement = document.createElement("div");
-    beerCommentsElement.innerHTML = "TODO - IMPLEMENT COMMENTS";
-    newBeerCard.appendChild(beerCommentsElement);
+    // let beerCommentsElement = document.createElement("div");
+    // beerCommentsElement.innerHTML = "TODO - IMPLEMENT COMMENTS";
+    // newBeerCard.appendChild(beerCommentsElement);
 
     // Send back the created beer card with its children
     return newBeerCard;
