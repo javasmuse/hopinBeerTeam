@@ -62,7 +62,7 @@ document.getElementById("cellar_search").addEventListener("click", getBeers);
 function getBeers(event) {
     event.preventDefault(event);
 
-    axios.get("https://ontariobeerapi.ca/beers").then((res) => {
+    axios.get("http://ontariobeerapi.ca/beers").then((res) => {
         //Here we will put a filter to return only the beers requested
         let beers = res.data;
 
@@ -154,7 +154,7 @@ function getBeers(event) {
                 image.src = photoURL;
                 cardFront.appendChild(image);
             }).catch(error => {
-                const staticImage = ("/front-end/resources/default_beer_image_HOPin.png");
+                const staticImage = ("/hopinBeerTeam/front-end/resources/default_beer_image_HOPin.png");
                 let image = document.createElement("img");
                 image.setAttribute("id", "photoHere");
                 image.src = staticImage;
