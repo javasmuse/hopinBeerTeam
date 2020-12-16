@@ -53,7 +53,7 @@ function underAge() {
 // randomizer stuff
 
 function randomTwelveBeers() {
-    axios.get("http://ontariobeerapi.ca/beers").then((res) => {
+    axios.get("https://hopin-back-end.herokuapp.com/beers").then((res) => {
         let beers = res.data;
         let beerArray = [];
 
