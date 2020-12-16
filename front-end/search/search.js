@@ -52,10 +52,6 @@ function underAge() {
 };
 
 
-
-
-
-
 // document.getElementById("getAll").addEventListener("click", getAllBeers);
 const HEROKU_BACK_END_BASE_URL = "https://hopin-back-end.herokuapp.com";
 
