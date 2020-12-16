@@ -66,7 +66,7 @@ document.getElementById("cellar_search").addEventListener("click", getBeers);
 function getBeers(event) {
     event.preventDefault(event);
 
-    axios.get("http://ontariobeerapi.ca/beers").then((res) => {
+    axios.get("https://ontariobeerapi.ca/beers").then((res) => {
         //Here we will put a filter to return only the beers requested
         let beers = res.data;
 
