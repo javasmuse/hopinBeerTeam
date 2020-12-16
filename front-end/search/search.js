@@ -62,7 +62,7 @@ document.getElementById("cellar_search").addEventListener("click", getBeers);
 function getBeers(event) {
     event.preventDefault(event);
 
-    axios.get("http://ontariobeerapi.ca/beers").then((res) => {
+    axios.get("https://hopin-back-end.herokuapp.com/beers").then((res) => {
         //Here we will put a filter to return only the beers requested
         let beers = res.data;
 
@@ -109,7 +109,7 @@ function getBeers(event) {
     function getAllBeers(event) {
         event.preventDefault(event);
 
-        axios.get("http://ontariobeerapi.ca/beers").then((res) => {
+        axios.get("https://hopin-back-end.herokuapp.com/beers").then((res) => {
             let beers = res.data;
             displayCards(beers);
             console.log(beers);
