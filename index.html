@@ -1,85 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>About HOPin</title>
-    <link rel="stylesheet" href="/hopinBeerTeam/front-end/index/styles.css">
-    <link href='https://fonts.googleapis.com/css?family=Khand' rel='stylesheet'>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Goldman">
-    <link rel="shortcut icon" href="/hopinBeerTeam/front-end/resources/beer.ico" type="image/icon">
+    <link rel="stylesheet" href="/hopinBeerTeam/front-end/index/styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Khand"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Goldman"
+    />
+    <link
+      rel="shortcut icon"
+      href="/hopinBeerTeam/front-end/resources/beer.ico"
+      type="image/icon"
+    />
+  </head>
 
-</head>
-
-<body class="main_body">
+  <body class="main_body">
     <div class="ageVerBg" id="ageVerBg">
-        <div class="age_Verification" id="ageVer">
-            <span class="ageVerTitle">
-                <h1>Age Verification</h1>
-            </span>
-            <span>
-                <p class="ageVerBody">Please indicate whether you are of legal drinking age in your country.</p>
-            </span>
-            <button class="yes" onclick="overAge()">Yes</button>
-            <button class="no" onclick="underAge()">No</button>
-        </div>
+      <div class="age_Verification" id="ageVer">
+        <span class="ageVerTitle">
+          <h1>Age Verification</h1>
+        </span>
+        <span>
+          <p class="ageVerBody">
+            Please indicate whether you are of legal drinking age in your
+            country.
+          </p>
+        </span>
+        <button class="yes" onclick="overAge()">Yes</button>
+        <button class="no" onclick="underAge()">No</button>
+      </div>
     </div>
     <div class="topnav">
-        <img class="navLogo" src="/hopinBeerTeam/front-end/resources/hopin.png" alt="">
-        <a href="/hopinBeerTeam/">Home</a>
-        <a href="/hopinBeerTeam/front-end/about/about.html">About Us</a>
-        <a href="/hopinBeerTeam/front-end/favorites/favorites.html">Favorites</a>
-        <a href="/hopinBeerTeam/front-end/search/">Search</a>
+      <img
+        class="navLogo"
+        src="/hopinBeerTeam/front-end/resources/hopin.png"
+        alt=""
+      />
+      <a href="/hopinBeerTeam/">Home</a>
+      <a href="/hopinBeerTeam/front-end/about/about.html">About Us</a>
+      <a href="/hopinBeerTeam/front-end/favorites/favorites.html">Favorites</a>
+      <a href="/hopinBeerTeam/front-end/search/">Search</a>
     </div>
 
     <div>
-        <h4 class="contentMsg">Here you can access all of your favorites along with some recommended beers.</h4>
+      <h1 class="contentMsg">Welcome to HOPin</h1>
     </div>
     <div class="content_container">
-        <div class="rcmndBeers content_panel">
-            <div class="topContainer">
+      <div class="rcmndBeers content_panel">
+        <div class="topContainer">
+          <h4>Recommended Beers</h4>
 
-                <h4>Recommended Beers</h4>
-
-                <a href="/hopinBeerTeam/front-end/search/search.html">
-                    <button class="pageBtn" id="getAllBeers" class="yes">Search for beers!</button>
-                </a>
-
-            </div>
-            <div class="wrap_cards" id="cards">
-
-            </div>
+          <a href="/hopinBeerTeam/front-end/search/search.html">
+            <button class="pageBtn" id="getAllBeers" class="yes">
+              Search for beers!
+            </button>
+          </a>
         </div>
+        <div class="wrap_cards" id="cards"></div>
+      </div>
 
-        <div class="favBeers content_panel">
-            <div class="topContainer">
+      <div class="favBeers content_panel">
+        <div class="topContainer">
+          <h4>View Favorites</h4>
 
-                <h4>View Favorites</h4>
-
-                <a href="/hopinBeerTeam/front-end/favorites/favorites.html">
-                    <button class="viewFaves pageBtn" id="viewFavorites">View/Edit</button>
-                </a>
-
-            </div>
-            <div class="wrap_cards" id="favorites_Container"> No favorites to be Displayed :(</div>
-
+          <a href="/hopinBeerTeam/front-end/favorites/favorites.html">
+            <button class="viewFaves pageBtn" id="viewFavorites">
+              View/Edit
+            </button>
+          </a>
         </div>
+        <div class="wrap_cards" id="favorites_Container">
+          No favorites to be Displayed :(
+        </div>
+      </div>
 
-        <footer class="footerAll">
-
-            <p>Project Made By Team 5 - HOPin. Copyright 2020</p>
-
-        </footer>
+      <footer class="footerAll">
+        <p>Project Made By Team 5 - HOPin. Copyright 2020</p>
+      </footer>
     </div>
-
-
-
-
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="/hopinBeerTeam/front-end/index/scripts.js"></script>
-
-</body>
-
+  </body>
 </html>
