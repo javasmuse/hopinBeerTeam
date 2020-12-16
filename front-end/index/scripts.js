@@ -103,7 +103,7 @@ function displayCards(beerRequested) {
             cardFront.appendChild(image);
         }).catch(error => {
             let image = document.createElement("img");
-            image.src = "../resources/default_beer_image_HOPin.png";
+            image.src = "/hopinBeerTeam/front-end/resources/default_beer_image_HOPin.png";
             image.setAttribute("class", "cardImage");
             cardFront.appendChild(image);
         });
@@ -214,7 +214,7 @@ function displayFavCards(beerRequested) {
             cardFront.appendChild(image);
         }).catch(error => {
             let image = document.createElement("img");
-            image.src = "../resources/default_beer_image_HOPin.png";
+            image.src = "/hopinBeerTeam/front-end/resources/default_beer_image_HOPin.png";
             image.setAttribute("class", "cardImage");
             cardFront.appendChild(image);
         });
